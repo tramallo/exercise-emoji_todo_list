@@ -4,18 +4,20 @@ import { useState } from "react";
 /** -- ComboBox
  * One-liner input field that reveals a list of selectable options when focused.
  * The selected option will be a parameter of the onSelect() event callback func.
- * 
+ *
  * @optionValues the list of selectable options
  * @onSelect the event callback funcion fired when a list element is selected
- * @allowCustomInput ---
+ *  @placeholder a placeholder or label to display
+ *  @allowCustomInput whether to allow the user to type a custom option
+ *  @allowNullish whether to trigger the onSelect() event when user inputs an empty value (thru options provided by dev or typed)
  */
 export type ComboBoxProps = {
   optionValues: string[];
   onSelect: (newValue: string) => void;
   options?: {
-      placeholder?: string;
-      allowNullish?: boolean;
-      allowCustomInput?: boolean;
+    placeholder?: string;
+    allowCustomInput?: boolean;
+    allowNullish?: boolean;
   };
 };
 
@@ -44,6 +46,12 @@ export default function ComboBox({
     e: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => {
     const optionContent = (e.target as HTMLLIElement).innerText;
+
+    //ignore nullish values when allowNullish = false
+    if (!optionContent && !options?.allowNullish) {
+      return;
+    }
+
     setSelectedValue(optionContent);
     onSelect(optionContent);
   };
@@ -51,14 +59,19 @@ export default function ComboBox({
   const optionEnterHandler = (e: React.KeyboardEvent<HTMLLIElement>) => {
     //ignore non-enter presses
     if (e.key != "Enter") {
-        return;
+      return;
     }
 
     const optionContent = (e.target as HTMLLIElement).innerText;
+
+    //ignore nullish values when allowNullish = false
+    if (!optionContent && !options?.allowNullish) {
+      return;
+    }
+
     setSelectedValue(optionContent);
     onSelect(optionContent);
-  }
-
+  };
 
   return (
     <div className="container">
@@ -72,12 +85,14 @@ export default function ComboBox({
       />
       <ul className="optionsList">
         {optionValues.map((opValue, index) => (
-          <li 
+          <li
             key={index}
             tabIndex={0}
             onClick={optionClickHandler}
             onKeyDown={optionEnterHandler}
-          >{opValue}</li>
+          >
+            {opValue}
+          </li>
         ))}
       </ul>
     </div>

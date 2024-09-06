@@ -16,7 +16,6 @@ export default function NewTodo({ onNewTodo }: NewTodoProps) {
     const [ name, setName ] = useState('')
 
     const setSeleted = (selected: string) => {
-        console.log(selected)
         setName(selected)
     }
 
