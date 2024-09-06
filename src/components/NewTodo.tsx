@@ -1,29 +1,33 @@
-import { useState } from "react"
+import { useState } from "react";
 
-import { Todo } from "../utils/schemas"
-import ComboBox from "./ComboBox"
+import { Todo } from "../utils/schemas";
+import ComboBox from "./ComboBox";
 
 export type NewTodoProps = {
-    onNewTodo: (newTodo: Todo) => void
-    options?: {
-        emojiSuggestions?: string[]
-        nameSuggestions?: string[]
-    }
-}
+  onNewTodo: (newTodo: Todo) => void;
+  options?: {
+    emojiSuggestions?: string[];
+    nameSuggestions?: string[];
+  };
+};
 
 export default function NewTodo({ onNewTodo }: NewTodoProps) {
-    const [ emoji, setEmoji ] = useState('')
-    const [ name, setName ] = useState('')
+  const [emoji, setEmoji] = useState("");
+  const [name, setName] = useState("");
 
-    const setSeleted = (selected: string) => {
-        setName(selected)
-    }
+  const setSeleted = (selected: string) => {
+    setName(selected);
+  };
 
-    return (
-        <>
-            {name}
-            
-            <ComboBox optionValues={['hola', 'we', 'ke', 'ase']} onSelect={setSeleted} options={{allowNullish: true}} />
-        </>
-    )
+  return (
+    <>
+      {name}
+
+      <ComboBox
+        optionValues={["hola", "we", "ke", "ase", ""]}
+        onSelect={setSeleted}
+        options={{ allowNullish: true }}
+      />
+    </>
+  );
 }

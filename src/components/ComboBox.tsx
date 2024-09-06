@@ -5,15 +5,18 @@ import { useState } from "react";
  * One-liner input field that reveals a list of selectable options when focused.
  * The selected option will be a parameter of the onSelect() event callback func.
  *
- * @optionValues the list of selectable options
+ * @optionValues the list of selectable options (avoid empty "" strings)
  * @onSelect the event callback funcion fired when a list element is selected
  *  @placeholder a placeholder or label to display
  *  @allowCustomInput whether to allow the user to type a custom option
  *  @allowNullish whether to trigger the onSelect() event when user inputs an empty value (thru options provided by dev or typed)
+ *
+ * WARN: Empty option values ("") messes tab navigation as it doesnt show a component on screen,
+ * but the empty component still exists and keeps tabbable.
  */
 export type ComboBoxProps = {
-  optionValues: string[];
   onSelect: (newValue: string) => void;
+  optionValues: string[];
   options?: {
     placeholder?: string;
     allowCustomInput?: boolean;
@@ -81,20 +84,22 @@ export default function ComboBox({
         value={selectedValue}
         onChange={(e) => setSelectedValue(e.target.value)}
         onKeyDown={inputFieldEnterHandler}
-        disabled={!(options?.allowCustomInput ?? true)}
+        readOnly={!options?.allowCustomInput}
       />
-      <ul className="optionsList">
-        {optionValues.map((opValue, index) => (
-          <li
-            key={index}
-            tabIndex={0}
-            onClick={optionClickHandler}
-            onKeyDown={optionEnterHandler}
-          >
-            {opValue}
-          </li>
-        ))}
-      </ul>
+      {!optionValues.length ? undefined : (
+        <ul className="optionsList">
+          {optionValues.map((opValue, index) => (
+            <li
+              key={index}
+              tabIndex={0}
+              onClick={optionClickHandler}
+              onKeyDown={optionEnterHandler}
+            >
+              {opValue}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

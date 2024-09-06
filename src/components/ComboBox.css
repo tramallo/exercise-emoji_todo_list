@@ -52,7 +52,6 @@
     visibility: hidden;
     background-color: var(--combo-box-text-background-color);
 }
-
 .optionsList li {
     padding: 0 var(--combo-box-padding);
 
@@ -60,6 +59,7 @@
     font-size: var(--combo-box-font-size);
     cursor: pointer;
     outline: none;
+    white-space: pre; /* makes empty string options visible */
 }
 .optionsList li:hover {
     background-color: var(--combo-box-hovering-color);
