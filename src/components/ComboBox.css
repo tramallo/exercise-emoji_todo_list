@@ -1,0 +1,69 @@
+:root {
+    --combo-box-hovering-color: gray;
+    --combo-box-focus-color: darkgreen;
+    --combo-box-padding: 1%;
+    --combo-box-text-background-color: lightgray;
+    --combo-box-font-size: 16px;
+    --combo-box-font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    margin: 0;
+    outline: none;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: var(--combo-box-padding);
+    position: relative; /* makes this element as the position context for the childs */
+}
+.container:focus-within .optionsList {
+    visibility: visible;
+}
+
+.inputField {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    padding: var(--combo-box-padding);
+    border: none;
+    outline: none;
+
+    font-size: var(--combo-box-font-size);
+    font-family: var(--combo-box-font-family);
+    background-color: var(--combo-box-text-background-color);
+}
+.inputField:hover {
+    background-color: var(--combo-box-hovering-color);
+}
+.inputField:focus {
+    background-color: var(--combo-box-focus-color);
+}
+
+.optionsList {
+    position: absolute; /* sets the list out of the normal flow */
+    box-sizing: border-box;
+    margin: 0;
+    padding: calc(var(--combo-box-padding) / 2) 0;
+
+    width: calc(100% - var(--combo-box-padding) * 2);
+
+    border-top: dashed 1px;
+    list-style-type: none;
+
+    visibility: hidden;
+    background-color: var(--combo-box-text-background-color);
+}
+
+.optionsList li {
+    padding: 0 var(--combo-box-padding);
+
+    font-family: var(--combo-box-font-family);
+    font-size: var(--combo-box-font-size);
+    cursor: pointer;
+    outline: none;
+}
+.optionsList li:hover {
+    background-color: var(--combo-box-hovering-color);
+}
+.optionsList li:focus {
+    background-color: var(--combo-box-focus-color);
+}

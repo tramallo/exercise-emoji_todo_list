@@ -1,3 +1,20 @@
+import { useState } from "react";
+
+import NewTodo from "./components/NewTodo";
+import TodosList from "./components/TodosList";
+import { Todo } from "./utils/schemas";
+
 export default function App() {
-  return ( <h1>some text</h1> )
+  const [ todos, setTodos ] = useState<Todo[]>([])
+
+  const addTodo = (newTodo: Todo) => {
+    setTodos([...todos, newTodo])
+  }
+
+  return (
+    <div className="app">
+      <NewTodo onNewTodo={addTodo}/>
+      <TodosList todos={todos} />
+    </div>
+  )
 }
