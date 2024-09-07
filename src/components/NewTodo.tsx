@@ -11,22 +11,20 @@ export type NewTodoProps = {
   };
 };
 
-export default function NewTodo({ onNewTodo }: NewTodoProps) {
+export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
   const [emoji, setEmoji] = useState("");
   const [name, setName] = useState("");
 
-  const setSeleted = (selected: string) => {
-    setName(selected);
-  };
-
   return (
     <>
-      {name}
-
       <ComboBox
-        optionValues={["hola", "we", "ke", "ase", ""]}
-        onSelect={setSeleted}
-        options={{ allowNullish: true }}
+        optionValues={options?.nameSuggestions ?? []}
+        onSelect={setName}
+        options={{ allowCustomInput: true, allowNullish: false }}
+      />
+      <ComboBox
+        optionValues={options?.emojiSuggestions ?? []}
+        onSelect={setEmoji}
       />
     </>
   );

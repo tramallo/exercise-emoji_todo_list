@@ -77,9 +77,9 @@ export default function ComboBox({
   };
 
   return (
-    <div className="container">
+    <div className="combobox">
       <input
-        className="inputField"
+        className="input-field"
         placeholder={options?.placeholder ?? ""}
         value={selectedValue}
         onChange={(e) => setSelectedValue(e.target.value)}
@@ -87,7 +87,7 @@ export default function ComboBox({
         readOnly={!options?.allowCustomInput}
       />
       {!optionValues.length ? undefined : (
-        <ul className="optionsList">
+        <ul className="options-list">
           {optionValues.map((opValue, index) => (
             <li
               key={index}
