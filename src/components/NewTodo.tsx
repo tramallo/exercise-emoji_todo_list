@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import "./NewTodo.css";
 import { Todo } from "../utils/schemas";
 import ComboBox from "./ComboBox";
 
@@ -17,15 +18,19 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
 
   return (
     <>
-      <ComboBox
-        optionValues={options?.nameSuggestions ?? []}
-        onSelect={setName}
-        options={{ allowCustomInput: true, allowNullish: false }}
-      />
-      <ComboBox
-        optionValues={options?.emojiSuggestions ?? []}
-        onSelect={setEmoji}
-      />
+      <div style={{ borderStyle: "solid", borderWidth: 1, borderColor: "red" }}>
+        <ComboBox
+          className="combobox1"
+          optionValues={options?.nameSuggestions ?? ["asdf", "hjkljk"]}
+          onSelect={setName}
+          options={{ allowCustomInput: true, allowNullish: false }}
+        />
+        <ComboBox
+          className="combobox2"
+          optionValues={options?.emojiSuggestions ?? ["asdf", "ñlkjñl"]}
+          onSelect={setEmoji}
+        />
+      </div>
     </>
   );
 }
