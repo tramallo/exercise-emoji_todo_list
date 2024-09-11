@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
+
+import "./EmojiSelector.css"
 import { getAllEmojis } from "../utils/emojis";
 
-export default function EmojiSelector() {
+export type EmojiSelectorProps = {
+  onSelect: (selectedEmoji: string) => void
+}
+
+export default function EmojiSelector({onSelect}: EmojiSelectorProps) {
   const [emojiList, setEmojis] = useState<string[]>([]);
-  const [selectedEmoji, setSelectedEmoji] = useState<string>("");
+  const [selectedEmoji, setSelectedEmoji] = useState<string | undefined>(undefined);
 
   const onEmojiClick = (e) => {
-    alert(e.target.innerText);
+    setSelectedEmoji(e.target.innerText)
+    onSelect(e.target.innerText)
+    e.target.blur()
   };
 
   //TODO: useMemo to optimize
@@ -20,7 +28,7 @@ export default function EmojiSelector() {
       className="emoji-selector"
       style={{ display: "inline-block", padding: "1%" }}
     >
-      <button>X</button>
+      <button>{selectedEmoji ?? "X"}</button>
       <div>
         {emojiList.map((emoji) => (
           <label
@@ -29,6 +37,7 @@ export default function EmojiSelector() {
               boxSizing: "border-box",
             }}
             onClick={onEmojiClick}
+            tabIndex={0}
           >
             {emoji}
           </label>

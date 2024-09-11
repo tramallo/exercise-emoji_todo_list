@@ -19,13 +19,17 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
   return (
     <>
       <div>
-        <EmojiSelector />
+        <EmojiSelector onSelect={setEmoji} />
         <ComboBox
           className="combobox1"
           optionValues={options?.nameSuggestions ?? ["asdf", "hjkljk"]}
           onSelect={setName}
           options={{ allowCustomInput: true, allowNullish: false }}
         />
+        <EmojiSelector onSelect={(emoji) => console.log(emoji)} />
+
+        <p>{emoji}</p>
+        <p>{name}</p>
       </div>
     </>
   );

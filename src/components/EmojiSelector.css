@@ -1,0 +1,49 @@
+:root {
+  --emoji-selector-padding: 1vw;
+  --emoji-selector-color: blue;
+  --emoji-selector-focus-color: green;
+}
+
+.emoji-selector {
+  max-width: 100vw;
+
+  box-sizing: border-box;
+  
+}
+.emoji-selector:focus-within div {
+  visibility: visible;
+}
+.emoji-selector:focus-within button {
+  background-color: var(--emoji-selector-focus-color);
+
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.emoji-selector button {
+  padding: var(--emoji-selector-padding);
+
+  background-color: var(--emoji-selector-color);
+
+  outline: none;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.emoji-selector div {
+  z-index: 1;
+  visibility: hidden;
+
+  background-color: var(--emoji-selector-focus-color);
+  padding: var(--emoji-selector-padding);
+  width: 80vw;
+  max-height: 80vh;
+
+  overflow-wrap: anywhere;
+  overflow-y: scroll;
+
+  position: absolute;
+  left: var(--emoji-selector-padding);
+
+  border-radius: 5px;
+}
