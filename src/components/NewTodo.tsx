@@ -26,6 +26,14 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
           onSelect={setName}
           options={{ allowCustomInput: true, allowNullish: false }}
         />
+        <div>ddfggfd</div>
+<div>ddfggfd</div>
+<div>ddfggfd</div>
+<div>ddfggfd</div>
+<div>ddfggfd</div>
+<div>ddfggfd</div>
+
+        <EmojiSelector onSelect={(emoji) => console.log(emoji)} />
         <EmojiSelector onSelect={(emoji) => console.log(emoji)} />
 
         <p>{emoji}</p>
