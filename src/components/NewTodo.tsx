@@ -18,7 +18,7 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
 
   return (
     <>
-      <div style={{ borderStyle: "solid", borderWidth: 1, borderColor: "red" }}>
+      <div>
         <ComboBox
           className="combobox1"
           optionValues={options?.nameSuggestions ?? ["asdf", "hjkljk"]}
