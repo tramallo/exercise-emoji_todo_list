@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <NewTodo onNewTodo={addTodo}/>
+      <NewTodo onNewTodo={addTodo} options={{defaultEmoji: "♦"}} />
       <TodosList todos={todos} />
     </div>
   )

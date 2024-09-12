@@ -8,12 +8,13 @@ import EmojiSelector from "./EmojiSelector";
 export type NewTodoProps = {
   onNewTodo: (newTodo: Todo) => void;
   options?: {
+    defaultEmoji?: string;
     nameSuggestions?: string[];
   };
 };
 
 export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
-  const [emoji, setEmoji] = useState("");
+  const [emoji, setEmoji] = useState(options?.defaultEmoji);
   const [name, setName] = useState("");
 
   const handleAddClick = (e) => {
@@ -31,17 +32,14 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
   }
 
   return (
-    <>
       <div className="new-todo">
-        <EmojiSelector onSelect={setEmoji} defaultValue="X" />
+        <EmojiSelector onSelect={setEmoji} defaultValue={options?.defaultEmoji} />
         <ComboBox
-          className="combobox1"
           optionValues={options?.nameSuggestions ?? []}
           onSelect={setName}
           options={{ allowCustomInput: true, allowNullish: false }}
         />
         <button onClick={handleAddClick}>Add</button>
       </div>
-    </>
   );
 }
