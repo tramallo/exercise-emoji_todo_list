@@ -5,14 +5,15 @@
 }
 
 .emoji-selector {
+  display: inline-block;
+  padding: var(--emoji-selector-padding);
+
   max-width: 100vw;
 
   box-sizing: border-box;
-  background-color: blueviolet;
   position: relative;
-  
 }
-.emoji-selector:focus-within div {
+.emoji-selector:focus-within .emoji-selector-pane {
   visibility: visible;
 }
 .emoji-selector:focus-within button {
@@ -20,6 +21,20 @@
 
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.emoji-selector:focus-within button::after {
+  content: "";
+  display: block;
+  background-color: var(--emoji-selector-focus-color);
+  
+  width: calc(100% - var(--emoji-selector-padding) * 2);
+  height: calc(var(--emoji-selector-padding) * 2);
+
+  position: absolute;
+  left: var(--emoji-selector-padding);
+  bottom: calc(0px - var(--emoji-selector-padding));
+  
+  z-index: 0;
 }
 
 .emoji-selector button {
@@ -31,37 +46,29 @@
   border-style: none;
   border-radius: 5px;
 }
-.emoji-selector button::after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: var(--emoji-selector-padding);
-  bottom: calc(-var(--emoji-selector-padding) * 4);
-  
-  width: calc(100% - var(--emoji-selector-padding) * 2);
-  background-color: cyan;
-  
-  height: calc(var(--emoji-selector-padding) * 3);
-  
-  z-index: 999;
-}
 
-.emoji-selector div {
+.emoji-selector .emoji-selector-pane {
   z-index: 1;
   visibility: hidden;
-
   background-color: var(--emoji-selector-focus-color);
+  border-radius: 5px;
+
+  position: fixed;
+  left: var(--emoji-selector-padding);
+
   box-sizing: border-box;
   padding: var(--emoji-selector-padding);
-
-  overflow-wrap: anywhere;
-  overflow-y: scroll;
-
-  position: absolute;
-  left: var(--emoji-selector-padding);
   width: calc(100vw - var(--emoji-selector-padding) * 2);
   max-height: 50vh;
 
+  overflow-wrap: anywhere;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 
-  border-radius: 5px;
+.emoji-selector-category {
+  margin-bottom: var(--emoji-selector-padding);
+}
+.emoji-selector-category label {
+  text-transform: uppercase;
 }
