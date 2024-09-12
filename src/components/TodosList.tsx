@@ -8,7 +8,7 @@ export default function TodosList({ todos }: TodosListProps) {
   return (
     <ul>
       {todos.map((todo) => (
-        <li>{todo.name}</li>
+        <li>{todo.emoji} {todo.name}</li>
       ))}
     </ul>
   );

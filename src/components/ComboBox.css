@@ -1,8 +1,8 @@
 :root {
-    --combo-box-hovering-color: dimgrey; 
-    --combo-box-focus-color: blue;
-    --combo-box-padding: 1vw;
-    --combo-box-selector-color: lightgray;
+    --combobox-hovering-color: dimgrey; 
+    --combobox-focus-color: blue;
+    --combobox-padding: 1vw;
+    --combobox-color: lightgray;
 }
 
 .combobox {
@@ -10,7 +10,7 @@
     margin: 0;
 
     border-radius: 5px;
-    padding: var(--combo-box-padding);
+    padding: var(--combobox-padding);
     outline: none;
     position: relative; /* makes this element as the position context for the childs */
 }
@@ -28,23 +28,23 @@
     margin: 0;
     padding-block: 0;
     padding-inline: 0;
-    padding: var(--combo-box-padding);
+    padding: var(--combobox-padding);
 
     border-style: none;
     border-radius: 5px;
     border-width: 1px;
     outline: none;
 
-    background-color: var(--combo-box-selector-color);
+    background-color: var(--combobox-color);
 }
 .combobox input:read-only {
     cursor: pointer;
 }
 .combobox input:hover {
-    background-color: var(--combo-box-hovering-color);
+    background-color: var(--combobox-hovering-color);
 }
 .combobox input:focus {
-    background-color: var(--combo-box-focus-color);
+    background-color: var(--combobox-focus-color);
 }
 
 .combobox ul {
@@ -52,11 +52,11 @@
     position: absolute; /* sets the list out of the normal flow */
     
     margin: 0;
-    padding: var(--combo-box-padding) 0;
+    padding: var(--combobox-padding) 0;
     box-sizing: border-box;
     overflow: hidden;
 
-    width: calc(100% - (var(--combo-box-padding) * 2));
+    width: calc(100% - (var(--combobox-padding) * 2));
     min-width: 1px;
 
     border-width: 1px;
@@ -68,18 +68,18 @@
     list-style-type: none;
 
     visibility: hidden;
-    background-color: var(--combo-box-selector-color);
+    background-color: var(--combobox-color);
 }
 .combobox ul li {
-    padding: 0 var(--combo-box-padding);
+    padding: 0 var(--combobox-padding);
     overflow: hidden;
     cursor: pointer;
     outline: none;
     white-space: pre; /* makes empty string options visible */
 }
 .combobox ul li:hover {
-    background-color: var(--combo-box-hovering-color);
+    background-color: var(--combobox-hovering-color);
 }
 .combobox ul li:focus {
-    background-color: var(--combo-box-focus-color);
+    background-color: var(--combobox-focus-color);
 }

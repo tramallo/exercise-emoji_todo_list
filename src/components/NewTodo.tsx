@@ -16,34 +16,31 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
   const [emoji, setEmoji] = useState("");
   const [name, setName] = useState("");
 
+  const handleAddClick = (e) => {
+    //ignore when info not fullfilled
+    if(!emoji || !name) {
+      return
+    }
+
+    const newTodo: Todo = {
+      emoji: emoji,
+      name: name,
+    }
+
+    onNewTodo(newTodo)
+  }
+
   return (
     <>
-      <div>
+      <div className="new-todo">
         <EmojiSelector onSelect={setEmoji} defaultValue="X" />
         <ComboBox
           className="combobox1"
-          optionValues={options?.nameSuggestions ?? ["asdf", "hjkljk"]}
+          optionValues={options?.nameSuggestions ?? []}
           onSelect={setName}
           options={{ allowCustomInput: true, allowNullish: false }}
         />
-        <div>ddfggfd</div>
-        <div>ddfggfd</div>
-        <div>ddfggfd</div>
-        <div>ddfggfd</div>
-        <div>ddfggfd</div>
-        <div>ddfggfd</div>
-
-        <EmojiSelector
-          onSelect={(emoji) => console.log(emoji)}
-          defaultValue="🍓"
-        />
-        <EmojiSelector
-          onSelect={(emoji) => console.log(emoji)}
-          defaultValue="😁"
-        />
-
-        <p>{emoji}</p>
-        <p>{name}</p>
+        <button onClick={handleAddClick}>Add</button>
       </div>
     </>
   );

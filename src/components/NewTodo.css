@@ -1,7 +1,31 @@
-.combobox1 {
-    --combo-box-focus-color: blue;
+:root {
+  --new-todo-color: blueviolet;
+  --new-todo-padding: 1vw;
+  --new-todo-focus-color: cyan;
 }
 
-.combobox2 {
-    --combo-box-focus-color: violet;
+.new-todo {
+  background-color: pink;
+}
+
+.new-todo > .emoji-selector {
+  --emoji-selector-color: var(--new-todo-color);
+  --emoji-selector-focus-color: var(--new-todo-focus-color);
+}
+
+.new-todo > .combobox {
+  --combobox-color: var(--new-todo-color);
+  --combobox-focus-color: var(--new-todo-focus-color);
+}
+
+.new-todo > button {
+  background-color: var(--new-todo-color);
+
+  padding: var(--new-todo-padding);
+
+  border-radius: 5px;
+  border-style: none;
+}
+.new-todo > button:focus {
+  background-color: var(--new-todo-focus-color);
 }
