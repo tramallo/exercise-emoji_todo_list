@@ -1,0 +1,29 @@
+:root {
+  --emoji-list-color: blue;
+  --emoji-list-padding: 1vw;
+  --emoji-list-hovering-color: red;
+}
+
+.emoji-list {
+  background-color: var(--emoji-list-color);
+}
+
+/* category container */
+.emoji-list > div {
+  padding-bottom: var(--emoji-list-padding)
+}
+
+/* category header */
+.emoji-list > div > label {
+  text-transform: uppercase;
+}
+
+/* emojis */
+.emoji-list > div > div > label {
+  display: inline-block;
+  border-radius: 5px;
+  padding: calc( var(--emoji-list-padding) / 2 );
+}
+.emoji-list > div > div > label:hover {
+  background-color: var(--emoji-list-hovering-color);
+}

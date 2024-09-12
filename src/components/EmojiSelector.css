@@ -66,9 +66,6 @@
   overflow-y: scroll;
 }
 
-.emoji-selector-category {
-  margin-bottom: var(--emoji-selector-padding);
-}
-.emoji-selector-category label {
-  text-transform: uppercase;
+.emoji-selector .emoji-list {
+  --emoji-list-color: var(--emoji-selector-focus-color)
 }
