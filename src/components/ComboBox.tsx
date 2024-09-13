@@ -19,9 +19,9 @@ import { useState } from "react";
 export type ComboBoxProps = {
   className?: string;
   onSelect: (selectedValue: string) => void;
-  optionValues: string[];
+  optionValues?: string[];
+  placeholder?: string;
   options?: {
-    placeholder?: string;
     allowCustomInput?: boolean;
     allowNullish?: boolean;
   };
@@ -31,6 +31,7 @@ export default function ComboBox({
   className,
   optionValues,
   onSelect,
+  placeholder,
   options,
 }: ComboBoxProps) {
   const [lastValidValue, setLastValidValue] = useState("");
@@ -116,14 +117,14 @@ export default function ComboBox({
   return (
     <div className={`combobox ${className ?? ""}`}>
       <input
-        placeholder={options?.placeholder ?? ""}
+        placeholder={placeholder}
         value={currentValue}
         onChange={(e) => setCurrentValue(e.target.value)}
         onKeyDown={inputFieldEnterHandler}
         onBlur={inputFieldBlur}
         readOnly={!options?.allowCustomInput}
       />
-      {!optionValues.length ? undefined : (
+      {optionValues &&
         <ul>
           {optionValues.map((opValue, index) => (
             <li
@@ -136,7 +137,7 @@ export default function ComboBox({
             </li>
           ))}
         </ul>
-      )}
+      }
     </div>
   );
 }

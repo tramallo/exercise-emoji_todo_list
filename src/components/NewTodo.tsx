@@ -38,7 +38,7 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
         defaultValue={options?.defaultEmoji ?? "O"}
       />
       <ComboBox
-        optionValues={options?.nameSuggestions ?? ["op 1", "op 2", ""]}
+        optionValues={options?.nameSuggestions}
         onSelect={setName}
         options={{ allowCustomInput: true, allowNullish: true }}
       />

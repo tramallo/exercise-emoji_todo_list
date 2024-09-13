@@ -17,9 +17,9 @@
 .combobox:focus-within ul {
     visibility: visible;
 }
-.combobox:focus-within input {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+.combobox:has(ul):focus-within input {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .combobox input {
