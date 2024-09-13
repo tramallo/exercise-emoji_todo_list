@@ -1,3 +1,4 @@
+import "./TodosList.css"
 import { Todo } from "../utils/schemas";
 
 export type TodosListProps = {
@@ -6,7 +7,7 @@ export type TodosListProps = {
 
 export default function TodosList({ todos }: TodosListProps) {
   return (
-    <ul>
+    <ul className="todos-list">
       {todos.map((todo, index) => (
         <li key={`todo-${index}`}>
           {todo.emoji} {todo.name}

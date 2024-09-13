@@ -1,0 +1,19 @@
+:root {
+  --todos-list-color: blue;
+  --todos-list-focus-color: cyan;
+  --todos-list-hovering-color: gray;
+  --todos-list-padding: 1vw 2vw;
+}
+
+.todos-list {
+  list-style-type: none;
+}
+
+.todos-list > li {
+  padding: var(--todos-list-padding);
+  margin: 1vw 0vw;
+
+  border-radius: 5px;
+
+  background-color: var(--todos-list-color);
+}
