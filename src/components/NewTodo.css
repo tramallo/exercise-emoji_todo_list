@@ -26,6 +26,6 @@
   border-radius: 5px;
   border-style: none;
 }
-.new-todo > button:focus {
-  background-color: var(--new-todo-focus-color);
+.new-todo > button:active {
+    background-color: var(--new-todo-focus-color);
 }
