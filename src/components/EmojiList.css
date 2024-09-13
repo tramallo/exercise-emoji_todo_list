@@ -20,7 +20,6 @@
 
 /* emojis */
 .emoji-list > div > div > label {
-  display: inline-block;
   border-radius: 5px;
   padding: 1vw;
 }

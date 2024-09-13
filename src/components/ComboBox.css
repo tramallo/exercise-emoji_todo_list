@@ -6,7 +6,6 @@
 }
 
 .combobox {
-    display: inline-block;
     position: relative;
 }
 .combobox:focus-within ul {

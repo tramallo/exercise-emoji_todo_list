@@ -5,7 +5,6 @@
 }
 
 .emoji-selector {
-  display: inline-block;
   position: relative;
 }
 .emoji-selector:focus-within .emoji-selector-pane {

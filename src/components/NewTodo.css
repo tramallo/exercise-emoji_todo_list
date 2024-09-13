@@ -1,24 +1,30 @@
 :root {
   --new-todo-color: blueviolet;
-  --new-todo-padding: 1vw;
+  --new-todo-padding: 1vw 2vw;
   --new-todo-focus-color: cyan;
 }
 
 .new-todo {
-  background-color: pink;
+  display: flex;
+
+  align-items: center;
+  justify-content:space-between;
 }
 
 .new-todo > .emoji-selector {
   --emoji-selector-color: var(--new-todo-color);
   --emoji-selector-focus-color: var(--new-todo-focus-color);
+  --emoji-selector-padding: var(--new-todo-padding);
 }
 
 .new-todo > .combobox {
   --combobox-color: var(--new-todo-color);
   --combobox-focus-color: var(--new-todo-focus-color);
+  --combobox-padding: var(--new-todo-padding); 
 }
 
 .new-todo > button {
+  display: inline-block;
   background-color: var(--new-todo-color);
 
   padding: var(--new-todo-padding);
