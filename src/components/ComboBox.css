@@ -7,12 +7,7 @@
 
 .combobox {
     display: inline-block;
-    margin: 0;
-
-    border-radius: 5px;
-    padding: var(--combobox-padding);
-    outline: none;
-    position: relative; /* makes this element as the position context for the childs */
+    position: relative;
 }
 .combobox:focus-within ul {
     visibility: visible;
@@ -30,10 +25,9 @@
     padding-inline: 0;
     padding: var(--combobox-padding);
 
+    outline: none;
     border-style: none;
     border-radius: 5px;
-    border-width: 1px;
-    outline: none;
 
     background-color: var(--combobox-color);
 }
@@ -49,17 +43,15 @@
 
 .combobox ul {
     z-index: 1;
-    position: absolute; /* sets the list out of the normal flow */
+    position: absolute;
     
     margin: 0;
-    padding: var(--combobox-padding) 0;
     box-sizing: border-box;
     overflow: hidden;
 
-    width: calc(100% - (var(--combobox-padding) * 2));
-    min-width: 1px;
+    width: 100%;
 
-    border-width: 1px;
+    border-top-width: 1px;
     border-top-style: dashed;
     border-top-color: var(--combo-box-hovering-color);
     border-bottom-left-radius: 5px;
@@ -71,7 +63,7 @@
     background-color: var(--combobox-color);
 }
 .combobox ul li {
-    padding: 0 var(--combobox-padding);
+    padding: var(--combobox-padding);
     overflow: hidden;
     cursor: pointer;
     outline: none;
