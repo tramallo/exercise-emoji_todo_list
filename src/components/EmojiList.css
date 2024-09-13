@@ -10,7 +10,7 @@
 
 /* category container */
 .emoji-list > div {
-  padding-bottom: var(--emoji-list-padding)
+  padding: var(--emoji-list-padding)
 }
 
 /* category header */
@@ -22,7 +22,7 @@
 .emoji-list > div > div > label {
   display: inline-block;
   border-radius: 5px;
-  padding: calc( var(--emoji-list-padding) / 2 );
+  padding: 1vw;
 }
 .emoji-list > div > div > label:hover {
   background-color: var(--emoji-list-hovering-color);
