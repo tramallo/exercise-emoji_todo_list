@@ -8,9 +8,11 @@ import { useState } from "react";
  * @className a custom class name for this ComboBox (used to style each instance separately)
  * @optionValues the list of selectable options (avoid empty "" strings)
  * @onSelect the event callback funcion fired when a list element is selected
- *  @placeholder a placeholder or label to display
- *  @allowCustomInput whether to allow the user to type a custom option
- *  @allowNullish whether to trigger the onSelect() event when user inputs an empty value (thru options provided by dev or typed)
+ * @defaultValue value set on initial draw (onSelect is called with this value on init, when provided)
+ * @placeholder a placeholder to display in the field
+ * @options -->
+ *  @allowCustomInput whether to allow the user to type a custom value
+ *  @allowNullish whether to trigger the onSelect() event when user inputs an empty value
  *
  * NOTE: Default style is customizable by styiling the .combobox class
  * WARN: Empty option values ("") messes tab navigation as it doesnt show a component on screen,
@@ -19,6 +21,7 @@ import { useState } from "react";
 export type ComboBoxProps = {
   className?: string;
   onSelect: (selectedValue: string) => void;
+  defaultValue?: string;
   optionValues?: string[];
   placeholder?: string;
   options?: {
@@ -31,11 +34,17 @@ export default function ComboBox({
   className,
   optionValues,
   onSelect,
+  defaultValue,
   placeholder,
   options,
 }: ComboBoxProps) {
-  const [lastValidValue, setLastValidValue] = useState("");
-  const [currentValue, setCurrentValue] = useState("");
+  const [lastValidValue, setLastValidValue] = useState(defaultValue ?? "");
+  const [currentValue, setCurrentValue] = useState(defaultValue ?? "");
+
+  //trigger callback with default value (if provided)
+  if(defaultValue && currentValue == defaultValue) {
+    onSelect(defaultValue)
+  }
 
   //when input field loses focus
   const inputFieldBlur = () => {
