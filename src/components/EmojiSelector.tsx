@@ -5,8 +5,8 @@ import { emojis } from "../utils/emojis";
 import EmojiList from "./EmojiList";
 
 export type EmojiSelectorProps = {
-  defaultValue: string;
   onSelect: (selectedEmoji: string) => void;
+  defaultValue: string;
 };
 
 export default function EmojiSelector({

@@ -33,10 +33,67 @@ export default function ComboBox({
   onSelect,
   options,
 }: ComboBoxProps) {
-  const [selectedValue, setSelectedValue] = useState("");
+  const [lastValidValue, setLastValidValue] = useState("");
+  const [currentValue, setCurrentValue] = useState("");
+
+  //when input field loses focus
+  const inputFieldBlur = () => {
+    //ignore nullish values when allowNullish = false
+    if (!currentValue && !options?.allowNullish) {
+      setCurrentValue(lastValidValue);
+      return;
+    }
+
+    setLastValidValue(currentValue);
+    onSelect(currentValue);
+  };
 
   //when pressing 'enter' in the input field
   const inputFieldEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    //ignore non-enter presses
+    if (e.key != "Enter") {
+      return;
+    }
+
+    //ignore nullish values when allowNullish = false
+    if (!currentValue && !options?.allowNullish) {
+      setCurrentValue(lastValidValue);
+      return;
+    }
+
+    //close list by releasing focus
+    const inputElement = e.target as HTMLInputElement;
+    inputElement.blur();
+
+    setLastValidValue(currentValue);
+    onSelect(currentValue);
+  };
+
+  //when clicking on list option
+  const optionClickHandler = (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ) => {
+    const target = e.target as HTMLLIElement;
+    const selectedValue = target.innerText;
+
+    //ignore nullish values when allowNullish = false
+    if (!selectedValue && !options?.allowNullish) {
+      return;
+    }
+
+    //close list by releasing focus
+    target.blur();
+
+    setLastValidValue(selectedValue);
+    setCurrentValue(selectedValue);
+    onSelect(selectedValue);
+  };
+
+  //when option has focus and 'enter' is pressed
+  const optionEnterHandler = (e: React.KeyboardEvent<HTMLLIElement>) => {
+    const target = e.target as HTMLLIElement;
+    const selectedValue = target.innerText;
+
     //ignore non-enter presses
     if (e.key != "Enter") {
       return;
@@ -51,57 +108,19 @@ export default function ComboBox({
     const inputElement = e.target as HTMLInputElement;
     inputElement.blur();
 
+    setLastValidValue(selectedValue);
+    setCurrentValue(selectedValue);
     onSelect(selectedValue);
-  };
-
-  //when clicking on list option
-  const optionClickHandler = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>
-  ) => {
-    const optionContent = (e.target as HTMLLIElement).innerText;
-
-    //ignore nullish values when allowNullish = false
-    if (!optionContent && !options?.allowNullish) {
-      return;
-    }
-
-    //close list by releasing focus
-    const inputElement = e.target as HTMLInputElement;
-    inputElement.blur();
-
-    setSelectedValue(optionContent);
-    onSelect(optionContent);
-  };
-
-  //when option has focus and 'enter' is pressed
-  const optionEnterHandler = (e: React.KeyboardEvent<HTMLLIElement>) => {
-    //ignore non-enter presses
-    if (e.key != "Enter") {
-      return;
-    }
-
-    const optionContent = (e.target as HTMLLIElement).innerText;
-
-    //ignore nullish values when allowNullish = false
-    if (!optionContent && !options?.allowNullish) {
-      return;
-    }
-
-    //close list by releasing focus
-    const inputElement = e.target as HTMLInputElement;
-    inputElement.blur();
-
-    setSelectedValue(optionContent);
-    onSelect(optionContent);
   };
 
   return (
     <div className={`combobox ${className ?? ""}`}>
       <input
         placeholder={options?.placeholder ?? ""}
-        value={selectedValue}
-        onChange={(e) => setSelectedValue(e.target.value)}
+        value={currentValue}
+        onChange={(e) => setCurrentValue(e.target.value)}
         onKeyDown={inputFieldEnterHandler}
+        onBlur={inputFieldBlur}
         readOnly={!options?.allowCustomInput}
       />
       {!optionValues.length ? undefined : (

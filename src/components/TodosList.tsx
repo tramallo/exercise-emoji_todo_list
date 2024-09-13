@@ -7,8 +7,10 @@ export type TodosListProps = {
 export default function TodosList({ todos }: TodosListProps) {
   return (
     <ul>
-      {todos.map((todo) => (
-        <li>{todo.emoji} {todo.name}</li>
+      {todos.map((todo, index) => (
+        <li key={`todo-${index}`}>
+          {todo.emoji} {todo.name}
+        </li>
       ))}
     </ul>
   );
