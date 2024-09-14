@@ -17,7 +17,7 @@
   --emoji-selector-padding: var(--new-todo-padding);
 }
 
-.new-todo > .combobox {
+.new-todo > .customCombobox {
   --combobox-color: var(--new-todo-color);
   --combobox-focus-color: var(--new-todo-focus-color);
   --combobox-padding: var(--new-todo-padding); 
