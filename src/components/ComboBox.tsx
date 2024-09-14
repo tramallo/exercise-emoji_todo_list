@@ -41,7 +41,7 @@ export default function ComboBox({
   const [lastValidValue, setLastValidValue] = useState(defaultValue ?? "");
   const [currentValue, setCurrentValue] = useState(defaultValue ?? "");
 
-  //trigger callback with default value (if provided)
+  //trigger callback on init if defaultValue is provided
   if (defaultValue && currentValue == defaultValue) {
     onSelect(defaultValue);
   }
