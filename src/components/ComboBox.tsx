@@ -42,8 +42,8 @@ export default function ComboBox({
   const [currentValue, setCurrentValue] = useState(defaultValue ?? "");
 
   //trigger callback with default value (if provided)
-  if(defaultValue && currentValue == defaultValue) {
-    onSelect(defaultValue)
+  if (defaultValue && currentValue == defaultValue) {
+    onSelect(defaultValue);
   }
 
   //when input field loses focus
@@ -115,8 +115,7 @@ export default function ComboBox({
     }
 
     //close list by releasing focus
-    const inputElement = e.target as HTMLInputElement;
-    inputElement.blur();
+    target.blur();
 
     setLastValidValue(selectedValue);
     setCurrentValue(selectedValue);
@@ -133,7 +132,7 @@ export default function ComboBox({
         onBlur={inputFieldBlur}
         readOnly={!options?.allowCustomInput}
       />
-      {optionValues &&
+      {optionValues && (
         <ul>
           {optionValues.map((opValue, index) => (
             <li
@@ -146,7 +145,7 @@ export default function ComboBox({
             </li>
           ))}
         </ul>
-      }
+      )}
     </div>
   );
 }
