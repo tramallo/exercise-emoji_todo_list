@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import "./App.css"
 import NewTodo from "./components/NewTodo";
 import TodosList from "./components/TodosList";
 import { Todo } from "./utils/schemas";
@@ -14,7 +15,7 @@ export default function App() {
   return (
     <div className="app">
       <NewTodo onNewTodo={addTodo} options={{defaultEmoji: "♦"}} />
-      <TodosList todos={todos} />
+      <TodosList className="custom-todos-list" todos={todos} />
     </div>
   )
 }
