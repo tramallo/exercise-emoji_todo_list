@@ -1,7 +1,8 @@
 :root {
-  --new-todo-color: blueviolet;
+  --new-todo-color: yellow;
   --new-todo-padding: 1vw 2vw;
-  --new-todo-focus-color: cyan;
+  --new-todo-focus-color: green;
+  --new-todo-text-color: red;
 }
 
 .new-todo {
@@ -18,9 +19,10 @@
 }
 
 .new-todo > .customCombobox {
-  --combobox-color: var(--new-todo-color);
-  --combobox-focus-color: var(--new-todo-focus-color);
-  --combobox-padding: var(--new-todo-padding); 
+  --combobox-input-color: var(--new-todo-color);
+  --combobox-input-focus-color: var(--new-todo-focus-color);
+  --combobox-input-padding: var(--new-todo-padding);
+  --combobox-input-text-color: var(--new-todo-text-color);
 }
 
 .new-todo > button {

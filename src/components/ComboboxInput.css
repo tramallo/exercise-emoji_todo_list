@@ -1,8 +1,10 @@
 :root {
-    --combobox-input-hover-color: dimgrey; 
-    --combobox-input-focus-color: blue;
-    --combobox-input-padding: 1vw;
+    --combobox-input-text-color: black;
     --combobox-input-color: lightgray;
+    --combobox-input-focus-color: cyan;
+    --combobox-input-hover-color: dimgrey;
+
+    --combobox-input-padding: 1vw;
 }
 
 .combobox-input {
@@ -29,6 +31,7 @@
     border-radius: 5px;
 
     background-color: var(--combobox-input-color);
+    color: var(--combobox-input-text-color);
 }
 .combobox-input input:read-only {
     cursor: pointer;
@@ -60,6 +63,7 @@
 
     visibility: hidden;
     background-color: var(--combobox-input-color);
+    color: var(--combobox-input-text-color);
 }
 .combobox-input ul li {
     padding: var(--combobox-input-padding);
