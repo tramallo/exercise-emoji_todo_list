@@ -22,8 +22,6 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    padding-block: 0;
-    padding-inline: 0;
     padding: var(--combobox-input-padding);
 
     outline: none;
