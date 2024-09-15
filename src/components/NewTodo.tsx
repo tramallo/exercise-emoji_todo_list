@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./NewTodo.css";
 import { Todo } from "../utils/schemas";
-import ComboBox from "./ComboBox";
+import ComboboxInput from "./ComboboxInput.tsx";
 import EmojiSelector from "./EmojiSelector";
 
 export type NewTodoProps = {
@@ -33,15 +33,15 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
 
   return (
     <div className="new-todo">
-      <ComboBox
+      <ComboboxInput
         className="customCombobox"
-        optionValues={options?.nameSuggestions ?? ["op1", "op2"]}
+        suggestions={options?.nameSuggestions ?? ["op1", "op2"]}
         onSelect={setName}
         options={{ allowCustomInput: true, allowNullish: true }}
       />
-      <ComboBox
+      <ComboboxInput
         className="defaultCombobox"
-        optionValues={options?.nameSuggestions ?? ["op1", "op2"]}
+        suggestions={options?.nameSuggestions ?? ["op1", "op2"]}
         onSelect={setName}
         options={{ allowCustomInput: true, allowNullish: true }}
       />
