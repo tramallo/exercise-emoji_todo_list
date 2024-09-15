@@ -1,8 +1,10 @@
 :root {
-  --todos-list-color: blue;
+  --todos-list-color: lightgray;
+  --todos-list-text-color: black;
   --todos-list-focus-color: cyan;
-  --todos-list-hovering-color: gray;
-  --todos-list-padding: 1vw 2vw;
+  --todos-list-hovering-color: dimgray;
+
+  --todos-list-padding: 1vw;
 }
 
 .todos-list {
@@ -16,4 +18,5 @@
   border-radius: 5px;
 
   background-color: var(--todos-list-color);
+  color: var(--todos-list-text-color);
 }

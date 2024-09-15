@@ -4,5 +4,5 @@
 }
 
 .custom-todos-list {
-  background-color: red;
+  --todos-list-text-color: red;
 }
