@@ -12,10 +12,21 @@ export default function App() {
     setTodos([...todos, newTodo])
   }
 
+  const removeTodo = (todoIndex: number) => {
+    const todosCopy = [...todos]
+    todosCopy.splice(todoIndex, 1)
+
+    setTodos(todosCopy)
+  }
+
   return (
     <div className="app">
+      <TodosList
+        className="custom-todos-list"
+        todos={todos}
+        onTodoSelect={removeTodo}
+      />
       <NewTodo onNewTodo={addTodo} options={{defaultEmoji: "♦"}} />
-      <TodosList className="custom-todos-list" todos={todos} />
     </div>
   )
 }
