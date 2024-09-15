@@ -2,7 +2,7 @@
   --todos-list-color: lightgray;
   --todos-list-text-color: black;
   --todos-list-focus-color: cyan;
-  --todos-list-hovering-color: dimgray;
+  --todos-list-hover-color: dimgray;
 
   --todos-list-padding: 1vw;
 }
@@ -13,10 +13,16 @@
 
 .todos-list > li {
   padding: var(--todos-list-padding);
-  margin: 1vw 0vw;
 
+  outline: none;
   border-radius: 5px;
 
   background-color: var(--todos-list-color);
   color: var(--todos-list-text-color);
+}
+.todos-list > li:hover {
+  background-color: var(--todos-list-hover-color);
+}
+.todos-list > li:focus {
+  background-color: var(--todos-list-focus-color);
 }

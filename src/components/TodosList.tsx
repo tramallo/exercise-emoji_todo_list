@@ -16,10 +16,27 @@ export default function TodosList({ className, todos, onTodoSelect }: TodosListP
     }
   }
 
+  //send callback when 'enter' is pressed on todo
+  const handleTodoEnter = (e: React.KeyboardEvent<HTMLLIElement>, todoIndex: number) => {
+    //ignore non-enter key presses
+    if (e.key != "Enter") {
+      return;
+    }
+
+    if (onTodoSelect) {
+      onTodoSelect(todoIndex)
+    }
+  }
+
   return (
     <ul className={`todos-list ${className ?? ""}`}>
       {todos.map((todo, index) => (
-        <li key={`todo-${index}`} onClick={(e) => handleTodoClick(index)}>
+        <li 
+          key={`todo-${index}`} 
+          onClick={() => handleTodoClick(index)} 
+          onKeyDown={(e) => handleTodoEnter(e, index)}
+          tabIndex={0}
+        >
           {todo.emoji} {todo.name}
         </li>
       ))}
