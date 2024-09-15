@@ -1,7 +1,10 @@
 :root {
+  --emoji-selector-color: lightgray;
+  --emoji-selector-text-color: black;
+  --emoji-selector-hover-color: dimgray;
+  --emoji-selector-focus-color: cyan;
+
   --emoji-selector-padding: 1vw;
-  --emoji-selector-color: blue;
-  --emoji-selector-focus-color: green;
 }
 
 .emoji-selector {
@@ -11,22 +14,24 @@
   visibility: visible;
 }
 .emoji-selector:focus-within button {
-  background-color: var(--emoji-selector-focus-color);
-
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 .emoji-selector:focus-within button::after {
   content: "";
   display: block;
-  background-color: var(--emoji-selector-focus-color);
-  
+  background-color: var(--emoji-selector-color);
+
   position: absolute;
   width: 100%;
   height: calc(100% / 2);
   left: 0;
-  
-  z-index: 0;
+  border-radius: 5px;
+
+  z-index: -1;
+}
+.emoji-selector:has(button:focus) .emoji-list {
+  --emoji-list-color: var(--emoji-selector-focus-color);
 }
 
 .emoji-selector button {
@@ -37,12 +42,26 @@
   outline: none;
   border-style: none;
   border-radius: 5px;
+
+  color: var(--emoji-selector-text-color);
+}
+.emoji-selector > button:hover {
+  background-color: var(--emoji-selector-hover-color);
+}
+.emoji-selector > button:hover::after {
+  background-color: var(--emoji-selector-hover-color);
+}
+.emoji-selector > button:focus {
+  background-color: var(--emoji-selector-focus-color);
+}
+.emoji-selector > button:focus::after {
+  background-color: var(--emoji-selector-focus-color);
 }
 
 .emoji-selector .emoji-selector-pane {
   z-index: 1;
   visibility: hidden;
-  background-color: var(--emoji-selector-focus-color);
+
   border-radius: 5px;
 
   position: fixed;
@@ -56,6 +75,10 @@
 }
 
 .emoji-selector .emoji-list {
+  --emoji-list-color: var(--emoji-selector-color);
+  --emoji-list-text-color: var(--emoji-selector-text-color);
+  --emoji-list-hover-color: var(--emoji-selector-hover-color);
+  --emoji-list-focus-color: var(--emoji-selector-focus-color);
+
   --emoji-list-padding: var(--emoji-selector-padding);
-  --emoji-list-color: var(--emoji-selector-focus-color);
 }

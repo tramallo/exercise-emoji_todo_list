@@ -12,13 +12,14 @@
   justify-content:space-between;
 }
 
-.new-todo > .emoji-selector {
+.new-todo > .custom-emoji-selector {
   --emoji-selector-color: var(--new-todo-color);
+  --emoji-selector-text-color: var(--new-todo-text-color);
   --emoji-selector-focus-color: var(--new-todo-focus-color);
   --emoji-selector-padding: var(--new-todo-padding);
 }
 
-.new-todo > .customCombobox {
+.new-todo > .custom-combobox-input {
   --combobox-input-color: var(--new-todo-color);
   --combobox-input-focus-color: var(--new-todo-focus-color);
   --combobox-input-padding: var(--new-todo-padding);

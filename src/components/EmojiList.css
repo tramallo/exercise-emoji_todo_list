@@ -1,7 +1,10 @@
 :root {
-  --emoji-list-color: blue;
+  --emoji-list-color: lightgray;
+  --emoji-list-text-color: black;
+  --emoji-list-hover-color: dimgray;
+  --emoji-list-focus-color: cyan;
+
   --emoji-list-padding: 1vw;
-  --emoji-list-hovering-color: red;
 }
 
 .emoji-list {
@@ -16,13 +19,21 @@
 /* category header */
 .emoji-list > div > label {
   text-transform: uppercase;
+
+  color: var(--emoji-list-text-color);
 }
 
 /* emojis */
 .emoji-list > div > div > label {
   border-radius: 5px;
   padding: 1vw;
+  outline: none;
+
+  color: var(--emoji-list-text-color);
 }
 .emoji-list > div > div > label:hover {
-  background-color: var(--emoji-list-hovering-color);
+  background-color: var(--emoji-list-hover-color);
+}
+.emoji-list > div > div > label:focus {
+  background-color: var(--emoji-list-focus-color);
 }

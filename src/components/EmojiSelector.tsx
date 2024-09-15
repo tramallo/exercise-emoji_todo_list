@@ -5,11 +5,13 @@ import { emojis } from "../utils/emojis";
 import EmojiList from "./EmojiList";
 
 export type EmojiSelectorProps = {
+  className?: string;
   onSelect: (selectedEmoji: string) => void;
   defaultValue: string;
 };
 
 export default function EmojiSelector({
+  className,
   onSelect,
   defaultValue,
 }: EmojiSelectorProps) {
@@ -22,7 +24,7 @@ export default function EmojiSelector({
   };
 
   return (
-    <div className="emoji-selector">
+    <div className={`emoji-selector ${className ?? ""}`}>
       <button>{selectedEmoji}</button>
       <div className="emoji-selector-pane">
         <EmojiList emojis={emojis} onEmojiClick={onEmojiClick} />
