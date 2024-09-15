@@ -1,7 +1,7 @@
 :root {
   --new-todo-color: yellow;
   --new-todo-padding: 1vw 2vw;
-  --new-todo-focus-color: green;
+  --new-todo-focus-color: cyan;
   --new-todo-text-color: red;
 }
 

@@ -41,13 +41,13 @@ export default function ComboboxInput({
   const [lastValidValue, setLastValidValue] = useState(defaultValue ?? "");
   const [currentValue, setCurrentValue] = useState(defaultValue ?? "");
 
-  //trigger callback on init if defaultValue is provided
+  //send callback on init when defaultValue is provided
   if (defaultValue && currentValue == defaultValue) {
     onSelect(defaultValue);
   }
 
-  //when input field loses focus
-  const inputFieldBlur = () => {
+  //send callback when input field loses focus
+  const handleInputFieldBlur = () => {
     //ignore nullish values when allowNullish = false
     if (!currentValue && !options?.allowNullish) {
       setCurrentValue(lastValidValue);
@@ -58,8 +58,8 @@ export default function ComboboxInput({
     onSelect(currentValue);
   };
 
-  //when pressing 'enter' in the input field
-  const inputFieldEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //send callback when 'enter' is pressed on input field
+  const handleInputFieldEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     //ignore non-enter presses
     if (e.key != "Enter") {
       return;
@@ -72,37 +72,37 @@ export default function ComboboxInput({
     }
 
     //close list by releasing focus
-    const inputElement = e.target as HTMLInputElement;
-    inputElement.blur();
+    const inputField = e.target as HTMLInputElement;
+    inputField.blur();
 
     setLastValidValue(currentValue);
     onSelect(currentValue);
   };
 
-  //when clicking on list option
-  const optionClickHandler = (
+  //set current value & send callback when clicked on suggestion
+  const handleSuggestionClick = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => {
-    const target = e.target as HTMLLIElement;
-    const selectedValue = target.innerText;
+    const suggestionElement = e.target as HTMLLIElement;
+    const suggestionValue = suggestionElement.innerText;
 
     //ignore nullish values when allowNullish = false
-    if (!selectedValue && !options?.allowNullish) {
+    if (!suggestionValue && !options?.allowNullish) {
       return;
     }
 
     //close list by releasing focus
-    target.blur();
+    suggestionElement.blur();
 
-    setLastValidValue(selectedValue);
-    setCurrentValue(selectedValue);
-    onSelect(selectedValue);
+    setLastValidValue(suggestionValue);
+    setCurrentValue(suggestionValue);
+    onSelect(suggestionValue);
   };
 
-  //when option has focus and 'enter' is pressed
-  const optionEnterHandler = (e: React.KeyboardEvent<HTMLLIElement>) => {
-    const target = e.target as HTMLLIElement;
-    const selectedValue = target.innerText;
+  //set current value & send called when 'enter' is pressed on suggestion
+  const handleSuggestionEnter = (e: React.KeyboardEvent<HTMLLIElement>) => {
+    const suggestionElement = e.target as HTMLLIElement;
+    const suggestionValue = suggestionElement.innerText;
 
     //ignore non-enter presses
     if (e.key != "Enter") {
@@ -110,16 +110,16 @@ export default function ComboboxInput({
     }
 
     //ignore nullish values when allowNullish = false
-    if (!selectedValue && !options?.allowNullish) {
+    if (!suggestionValue && !options?.allowNullish) {
       return;
     }
 
     //close list by releasing focus
-    target.blur();
+    suggestionElement.blur();
 
-    setLastValidValue(selectedValue);
-    setCurrentValue(selectedValue);
-    onSelect(selectedValue);
+    setLastValidValue(suggestionValue);
+    setCurrentValue(suggestionValue);
+    onSelect(suggestionValue);
   };
 
   return (
@@ -128,8 +128,8 @@ export default function ComboboxInput({
         placeholder={placeholder}
         value={currentValue}
         onChange={(e) => setCurrentValue(e.target.value)}
-        onKeyDown={inputFieldEnterHandler}
-        onBlur={inputFieldBlur}
+        onKeyDown={handleInputFieldEnter}
+        onBlur={handleInputFieldBlur}
         readOnly={!options?.allowCustomInput}
       />
       {suggestions && (
@@ -138,8 +138,8 @@ export default function ComboboxInput({
             <li
               key={index}
               tabIndex={0}
-              onClick={optionClickHandler}
-              onKeyDown={optionEnterHandler}
+              onClick={handleSuggestionClick}
+              onKeyDown={handleSuggestionEnter}
             >
               {suggestion}
             </li>
