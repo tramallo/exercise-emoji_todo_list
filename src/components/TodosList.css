@@ -1,9 +1,9 @@
 .todos-list {
-  --todos-list-color: var(--default-component-color, lightgray);
-  --todos-list-text-color: var(--default-text-color, black);
-  --todos-list-hover-color: var(--default-hover-color, dimgray);
-  --todos-list-focus-color: var(--default-focus-color, cyan);
-  --todos-list-padding: var(--default-padding, 1vw);
+  --todos-list-color: var(--theme-component-color, lightgray);
+  --todos-list-text-color: var(--theme-text-color, black);
+  --todos-list-hover-color: var(--theme-hover-color, dimgray);
+  --todos-list-focus-color: var(--theme-focus-color, cyan);
+  --todos-list-padding: var(--theme-padding, 1vw);
 
   list-style-type: none;
 }

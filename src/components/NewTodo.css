@@ -1,9 +1,9 @@
 .new-todo {
-  --new-todo-color: var(--default-component-color, lightgray);
-  --new-todo-text-color: var(--default-text-color, black);
-  --new-todo-hover-color: var(--default-hover-color, dimgray);
-  --new-todo-focus-color: var(--default-hover-color, cyan);
-  --new-todo-padding: var(--default-padding, 1vw);
+  --new-todo-color: var(--theme-component-color, lightgray);
+  --new-todo-text-color: var(--theme-text-color, black);
+  --new-todo-hover-color: var(--theme-hover-color, dimgray);
+  --new-todo-focus-color: var(--theme-hover-color, cyan);
+  --new-todo-padding: var(--theme-padding, 1vw);
 
   display: flex;
 

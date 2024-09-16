@@ -4,17 +4,17 @@
 }
 
 .light-theme {
-  --default-component-color: yellow;
-  --default-text-color: darkblue;
-  --default-hover-color: tomato;
-  --default-focus-color: green;
-  --default-padding: 2vw 4vw;
+  --theme-component-color: yellow;
+  --theme-text-color: darkblue;
+  --theme-hover-color: tomato;
+  --theme-focus-color: green;
+  --theme-padding: 2vw 4vw;
 }
 
 .dark-theme {
-  --default-component-color: darkblue;
-  --default-text-color: yellow;
-  --default-hover-color: green;
-  --default-focus-color: tomato;
-  --default-padding: 2vw 4vw;
+  --theme-component-color: darkblue;
+  --theme-text-color: yellow;
+  --theme-hover-color: green;
+  --theme-focus-color: tomato;
+  --theme-padding: 2vw 4vw;
 }
