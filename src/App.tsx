@@ -28,14 +28,18 @@ export default function App() {
     setTodos(todosCopy)
   }
 
+  const getCurrentTodosNames = (): string[] => todos.map((todo) => todo.name)
+
   return (
     <div className={`app ${currentTheme}`}>
+      <NewTodo 
+        onNewTodo={addTodo} 
+        options={{defaultEmoji: "♦", nameSuggestions: getCurrentTodosNames()}} 
+      />
       <TodosList
-        className="custom-todos-list"
         todos={todos}
         onTodoSelect={removeTodo}
       />
-      <NewTodo onNewTodo={addTodo} options={{defaultEmoji: "♦"}} />
 
       <button onClick={switchTheme}>Switch theme</button>
     </div>

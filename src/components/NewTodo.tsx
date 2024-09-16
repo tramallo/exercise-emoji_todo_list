@@ -38,20 +38,9 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
         defaultValue={options?.defaultEmoji ?? "O"}
       />
       <ComboboxInput
-        className="custom-combobox-input"
-        suggestions={options?.nameSuggestions ?? ["op1", "op2"]}
+        suggestions={options?.nameSuggestions}
         onSelect={setName}
         options={{ allowCustomInput: true, allowNullish: true }}
-      />
-      <ComboboxInput
-        suggestions={options?.nameSuggestions ?? ["op1", "op2"]}
-        onSelect={setName}
-        options={{ allowCustomInput: true, allowNullish: true }}
-      />
-      <EmojiSelector
-        className="custom-emoji-selector"
-        onSelect={setEmoji}
-        defaultValue={options?.defaultEmoji ?? "X"}
       />
       <button onClick={handleAddClick}>Add</button>
     </div>

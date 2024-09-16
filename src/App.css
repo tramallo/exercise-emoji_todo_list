@@ -18,3 +18,11 @@
   --theme-focus-color: tomato;
   --theme-padding: 2vw 4vw;
 }
+
+.new-todo {
+  margin-bottom: 2vw;
+}
+
+.todos-list {
+  margin-inline: 3vw;
+}
