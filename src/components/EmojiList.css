@@ -4,13 +4,14 @@
   --emoji-list-hover-color: var(--custom-hover-color, var(--theme-hover-color, dimgray));
   --emoji-list-focus-color: var(--custom-focus-color, var(--theme-focus-color, cyan));
   --emoji-list-padding: var(--custom-padding, var(--theme-padding, 1vw));
+  --emoji-list-border-radius: var(--custom-border-radius, var(--theme-border-radius, 5px));
 
   background-color: var(--emoji-list-color);
 }
 
 /* category container */
 .emoji-list > div {
-  padding: var(--emoji-list-padding)
+  padding: var(--emoji-list-padding);
 }
 
 /* category header */
@@ -22,10 +23,12 @@
 
 /* emojis */
 .emoji-list > div > div > label {
-  border-radius: 5px;
+  display: inline-block;
   padding: 1vw;
   outline: none;
+  box-sizing: border-box;
 
+  border-radius: var(--emoji-list-border-radius);
   color: var(--emoji-list-text-color);
 }
 .emoji-list > div > div > label:hover {
