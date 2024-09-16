@@ -1,24 +1,20 @@
-:root {
-  --todos-list-color: lightgray;
-  --todos-list-text-color: black;
-  --todos-list-focus-color: cyan;
-  --todos-list-hover-color: dimgray;
-
-  --todos-list-padding: 1vw;
-}
-
 .todos-list {
+  --todos-list-color: var(--default-component-color, lightgray);
+  --todos-list-text-color: var(--default-text-color, black);
+  --todos-list-hover-color: var(--default-hover-color, dimgray);
+  --todos-list-focus-color: var(--default-focus-color, cyan);
+  --todos-list-padding: var(--default-padding, 1vw);
+
   list-style-type: none;
 }
 
 .todos-list > li {
-  padding: var(--todos-list-padding);
-
   outline: none;
   border-radius: 5px;
 
   background-color: var(--todos-list-color);
   color: var(--todos-list-text-color);
+  padding: var(--todos-list-padding);
 }
 .todos-list > li:hover {
   background-color: var(--todos-list-hover-color);

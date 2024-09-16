@@ -3,6 +3,18 @@
     padding: 0;
 }
 
-.custom-todos-list {
-  --todos-list-text-color: red;
+.light-theme {
+  --default-component-color: yellow;
+  --default-text-color: darkblue;
+  --default-hover-color: tomato;
+  --default-focus-color: green;
+  --default-padding: 2vw 4vw;
+}
+
+.dark-theme {
+  --default-component-color: darkblue;
+  --default-text-color: yellow;
+  --default-hover-color: green;
+  --default-focus-color: tomato;
+  --default-padding: 2vw 4vw;
 }
