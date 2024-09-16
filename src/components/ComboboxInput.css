@@ -1,14 +1,11 @@
-:root {
-    --combobox-input-text-color: black;
-    --combobox-input-color: lightgray;
-    --combobox-input-focus-color: cyan;
-    --combobox-input-hover-color: dimgrey;
-
-    --combobox-input-padding: 1vw;
-}
-
 .combobox-input {
-    position: relative;
+  --combobox-input-color: var(--default-component-color, lightgray);
+  --combobox-input-text-color: var(--default-text-color, black);
+  --combobox-input-hover-color: var(--default-hover-color, dimgray);
+  --combobox-input-focus-color: var(--default-focus-color, cyan);
+  --combobox-input-padding: var(--default-padding, 1vw);
+
+  position: relative;
 }
 .combobox-input:focus-within ul {
     visibility: visible;
@@ -22,7 +19,6 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    padding: var(--combobox-input-padding);
 
     outline: none;
     border-style: none;
@@ -30,6 +26,7 @@
 
     background-color: var(--combobox-input-color);
     color: var(--combobox-input-text-color);
+  padding: var(--combobox-input-padding);
 }
 .combobox-input input:read-only {
     cursor: pointer;
@@ -44,11 +41,12 @@
 .combobox-input ul {
     z-index: 1;
     position: absolute;
+    visibility: hidden;
+    list-style-type: none;
 
     margin: 0;
     box-sizing: border-box;
     overflow: hidden;
-
     width: 100%;
 
     border-top-width: 1px;
@@ -57,18 +55,16 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 
-    list-style-type: none;
-
-    visibility: hidden;
     background-color: var(--combobox-input-color);
     color: var(--combobox-input-text-color);
 }
 .combobox-input ul li {
-    padding: var(--combobox-input-padding);
     overflow: hidden;
     cursor: pointer;
     outline: none;
     white-space: pre; /* makes empty string options visible */
+
+    padding: var(--combobox-input-padding);
 }
 .combobox-input ul li:hover {
     background-color: var(--combobox-input-hover-color);
