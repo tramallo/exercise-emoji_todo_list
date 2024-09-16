@@ -4,13 +4,23 @@
   --combobox-input-hover-color: var(--custom-hover-color, var(--theme-hover-color, dimgray));
   --combobox-input-focus-color: var(--custom-focus-color, var(--theme-focus-color, cyan));
   --combobox-input-padding: var(--custom-padding, var(--theme-padding, 1vw));
+  --combobox-input-border: var(--custom-border, var(--theme-border, 2px solid black));
+  --combobox-input-border-radius: var(--custom-border-radius, var(--theme-border-radius, 5px));
 
   position: relative;
 }
 .combobox-input:focus-within ul {
     visibility: visible;
+
+  border-top-width: 1px;
+  border-top-style: dashed;
+  border-top-color: var(--combobox-input-hover-color);
+
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 .combobox-input:has(ul):focus-within input {
+  border-bottom: none;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -22,11 +32,12 @@
 
     outline: none;
     border-style: none;
-    border-radius: 5px;
 
+    border-radius: var(--combobox-input-border-radius);
+    border: var(--combobox-input-border);
     background-color: var(--combobox-input-color);
     color: var(--combobox-input-text-color);
-  padding: var(--combobox-input-padding);
+    padding: var(--combobox-input-padding);
 }
 .combobox-input input:read-only {
     cursor: pointer;
@@ -48,13 +59,9 @@
     box-sizing: border-box;
     overflow: hidden;
     width: 100%;
-
-    border-top-width: 1px;
-    border-top-style: dashed;
-    border-top-color: var(--combobox-input-hover-color);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-
+    
+    border: var(--combobox-input-border);
+    border-radius: var(--combobox-input-border-radius);
     background-color: var(--combobox-input-color);
     color: var(--combobox-input-text-color);
 }
