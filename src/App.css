@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+  padding: 1vw;
+}
+
 .light-theme {
   --theme-component-color: yellow;
   --theme-text-color: darkblue;
