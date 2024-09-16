@@ -1,13 +1,10 @@
-:root {
-  --emoji-list-color: lightgray;
-  --emoji-list-text-color: black;
-  --emoji-list-hover-color: dimgray;
-  --emoji-list-focus-color: cyan;
-
-  --emoji-list-padding: 1vw;
-}
-
 .emoji-list {
+  --emoji-list-color: var(--default-component-color, lightgray);
+  --emoji-list-text-color: var(--default-text-color, black);
+  --emoji-list-hover-color: var(--default-hover-color, dimgray);
+  --emoji-list-focus-color: var(--default-focus-color, cyan);
+  --emoji-list-padding: var(--default-padding, 1vw);
+
   background-color: var(--emoji-list-color);
 }
 
