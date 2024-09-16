@@ -1,40 +1,32 @@
-:root {
-  --new-todo-color: yellow;
-  --new-todo-padding: 1vw 2vw;
-  --new-todo-focus-color: cyan;
-  --new-todo-text-color: red;
-}
-
 .new-todo {
+  --new-todo-color: var(--default-component-color, lightgray);
+  --new-todo-text-color: var(--default-text-color, black);
+  --new-todo-hover-color: var(--default-hover-color, dimgray);
+  --new-todo-focus-color: var(--default-hover-color, cyan);
+  --new-todo-padding: var(--default-padding, 1vw);
+
   display: flex;
 
   align-items: center;
   justify-content:space-between;
 }
 
-.new-todo > .custom-emoji-selector {
-  --emoji-selector-color: var(--new-todo-color);
-  --emoji-selector-text-color: var(--new-todo-text-color);
-  --emoji-selector-focus-color: var(--new-todo-focus-color);
-  --emoji-selector-padding: var(--new-todo-padding);
-}
-
-.new-todo > .custom-combobox-input {
-  --combobox-input-color: var(--new-todo-color);
-  --combobox-input-focus-color: var(--new-todo-focus-color);
-  --combobox-input-padding: var(--new-todo-padding);
-  --combobox-input-text-color: var(--new-todo-text-color);
-}
-
 .new-todo > button {
   display: inline-block;
-  background-color: var(--new-todo-color);
-
-  padding: var(--new-todo-padding);
 
   border-radius: 5px;
   border-style: none;
+
+  background-color: var(--new-todo-color);
+  padding: var(--new-todo-padding);
+  color: var(--new-todo-text-color);
+}
+.new-todo > button:hover {
+  background-color: var(--new-todo-hover-color);
+}
+.new-todo > button:focus {
+  background-color: var(--new-todo-focus-color);
 }
 .new-todo > button:active {
-    background-color: var(--new-todo-focus-color);
+  background-color: var(--new-todo-text-color);
 }
