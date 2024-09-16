@@ -25,4 +25,5 @@
 
 .todos-list {
   margin-inline: 3vw;
+  --custom-padding: 1vw 3vw;
 }

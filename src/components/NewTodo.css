@@ -1,9 +1,9 @@
 .new-todo {
-  --new-todo-color: var(--theme-component-color, lightgray);
-  --new-todo-text-color: var(--theme-text-color, black);
-  --new-todo-hover-color: var(--theme-hover-color, dimgray);
-  --new-todo-focus-color: var(--theme-hover-color, cyan);
-  --new-todo-padding: var(--theme-padding, 1vw);
+  --new-todo-color: var(--custom-color, var(--theme-component-color, lightgray));
+  --new-todo-text-color: var(--custom-text-color, var(--theme-text-color, black));
+  --new-todo-hover-color: var(--custom-hover-color, var(--theme-hover-color, dimgray));
+  --new-todo-focus-color: var(--custom-focus-color, var(--theme-hover-color, cyan));
+  --new-todo-padding: var(--custom-padding, var(--theme-padding, 1vw));
 
   display: flex;
 

@@ -1,9 +1,9 @@
 .emoji-list {
-  --emoji-list-color: var(--theme-component-color, lightgray);
-  --emoji-list-text-color: var(--theme-text-color, black);
-  --emoji-list-hover-color: var(--theme-hover-color, dimgray);
-  --emoji-list-focus-color: var(--theme-focus-color, cyan);
-  --emoji-list-padding: var(--theme-padding, 1vw);
+  --emoji-list-color: var(--custom-color, var(--theme-component-color, lightgray));
+  --emoji-list-text-color: var(--custom-text-color, var(--theme-text-color, black));
+  --emoji-list-hover-color: var(--custom-hover-color, var(--theme-hover-color, dimgray));
+  --emoji-list-focus-color: var(--custom-focus-color, var(--theme-focus-color, cyan));
+  --emoji-list-padding: var(--custom-padding, var(--theme-padding, 1vw));
 
   background-color: var(--emoji-list-color);
 }

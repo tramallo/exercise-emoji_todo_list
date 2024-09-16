@@ -1,9 +1,9 @@
 .combobox-input {
-  --combobox-input-color: var(--theme-component-color, lightgray);
-  --combobox-input-text-color: var(--theme-text-color, black);
-  --combobox-input-hover-color: var(--theme-hover-color, dimgray);
-  --combobox-input-focus-color: var(--theme-focus-color, cyan);
-  --combobox-input-padding: var(--theme-padding, 1vw);
+  --combobox-input-color: var(--custom-color, var(--theme-component-color, lightgray));
+  --combobox-input-text-color: var(--custom-text-color, var(--theme-text-color, black));
+  --combobox-input-hover-color: var(--custom-hover-color, var(--theme-hover-color, dimgray));
+  --combobox-input-focus-color: var(--custom-focus-color, var(--theme-focus-color, cyan));
+  --combobox-input-padding: var(--custom-padding, var(--theme-padding, 1vw));
 
   position: relative;
 }
