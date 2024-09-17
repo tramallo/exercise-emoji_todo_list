@@ -4,19 +4,24 @@
   --new-todo-hover-color: var(--custom-hover-color, var(--theme-hover-color, dimgray));
   --new-todo-focus-color: var(--custom-focus-color, var(--theme-hover-color, cyan));
   --new-todo-padding: var(--custom-padding, var(--theme-padding, 1vw));
+  --new-todo-border: var(--custom-border, var(--theme-border, 2px solid black));
+  --new-todo-border-radius: var(--custom-border-radius, var(--theme-border-radius, 5px));
 
   display: flex;
 
   align-items: center;
   justify-content:space-between;
+
+  border: var(--new-todo-border);
+  border-radius: var(--new-todo-border-radius);
 }
 
 .new-todo > button {
   display: inline-block;
+  box-sizing: border-box;
 
-  border-radius: 5px;
-  border-style: none;
-
+  border: var(--new-todo-border);
+  border-radius: var(--new-todo-border-radius);
   background-color: var(--new-todo-color);
   padding: var(--new-todo-padding);
   color: var(--new-todo-text-color);

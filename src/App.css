@@ -13,8 +13,10 @@ body {
   --theme-hover-color: tomato;
   --theme-focus-color: green;
   --theme-padding: 2vw 4vw;
-  --theme-border: 1px dashed red;
+  --theme-border: 5px solid red;
   --theme-border-radius: 15px;
+
+  --new-todo-border: none;
 }
 
 .dark-theme {
