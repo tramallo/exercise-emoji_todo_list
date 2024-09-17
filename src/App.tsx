@@ -1,47 +1,47 @@
 import { useState } from "react";
 
-import "./App.css"
+import "./App.css";
 import NewTodo from "./components/NewTodo";
 import TodosList from "./components/TodosList";
 import { Todo } from "./utils/schemas";
 
 export default function App() {
-  const [ currentTheme, setCurrentTheme ] = useState("light-theme")
-  const [ todos, setTodos ] = useState<Todo[]>([])
+  const [currentTheme, setCurrentTheme] = useState("light-theme");
+  const [usedTodoNames, setUsedTodoNames] = useState<string[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const switchTheme = () => {
     if (currentTheme == "light-theme") {
-      setCurrentTheme("dark-theme")
+      setCurrentTheme("dark-theme");
     } else {
-      setCurrentTheme("light-theme")
+      setCurrentTheme("light-theme");
     }
-  }
+  };
 
   const addTodo = (newTodo: Todo) => {
-    setTodos([...todos, newTodo])
-  }
+    if (!usedTodoNames.includes(newTodo.name)) {
+      setUsedTodoNames([...usedTodoNames, newTodo.name]);
+    }
+
+    setTodos([...todos, newTodo]);
+  };
 
   const removeTodo = (todoIndex: number) => {
-    const todosCopy = [...todos]
-    todosCopy.splice(todoIndex, 1)
+    const todosCopy = [...todos];
+    todosCopy.splice(todoIndex, 1);
 
-    setTodos(todosCopy)
-  }
-
-  const getCurrentTodosNames = (): string[] => todos.map((todo) => todo.name)
+    setTodos(todosCopy);
+  };
 
   return (
     <div className={`app ${currentTheme}`}>
-      <NewTodo 
-        onNewTodo={addTodo} 
-        options={{defaultEmoji: "♦", nameSuggestions: getCurrentTodosNames()}} 
+      <NewTodo
+        onNewTodo={addTodo}
+        options={{ defaultEmoji: "♦", nameSuggestions: usedTodoNames }}
       />
-      <TodosList
-        todos={todos}
-        onTodoSelect={removeTodo}
-      />
+      <TodosList todos={todos} onTodoSelect={removeTodo} />
 
       <button onClick={switchTheme}>Switch theme</button>
     </div>
-  )
+  );
 }
