@@ -22,14 +22,6 @@ body {
   --theme-container-border: 3px solid pink;
 }
 
-.dark-theme {
-  --theme-component-color: darkblue;
-  --theme-text-color: yellow;
-  --theme-hover-color: green;
-  --theme-focus-color: tomato;
-  --theme-padding: 2vw 4vw;
-}
-
 .new-todo {
   margin-bottom: 2vw;
 }

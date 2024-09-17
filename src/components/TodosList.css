@@ -4,17 +4,20 @@
   --todos-list-hover-color: var(--theme-hover-color, dimgray);
   --todos-list-focus-color: var(--theme-focus-color, cyan);
   --todos-list-padding: var(--theme-padding, 1vw);
+  --todos-list-border: var(--theme-border, 2px solid black);
+  --todos-list-border-radius: var(--theme-border-radius, 5px);
 
   list-style-type: none;
 }
 
 .todos-list > li {
   outline: none;
-  border-radius: 5px;
 
   background-color: var(--todos-list-color);
   color: var(--todos-list-text-color);
   padding: var(--todos-list-padding);
+  border: var(--todos-list-border);
+  border-radius: var(--todos-list-border-radius);
 }
 .todos-list > li:hover {
   background-color: var(--todos-list-hover-color);
