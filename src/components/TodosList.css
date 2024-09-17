@@ -6,6 +6,7 @@
   --todos-list-padding: var(--theme-padding, 1vw);
   --todos-list-border: var(--theme-border, 2px solid black);
   --todos-list-border-radius: var(--theme-border-radius, 5px);
+  --todos-list-item-separation: var(--theme-list-item-separation, 1vw);
 
   list-style-type: none;
 }
@@ -24,4 +25,7 @@
 }
 .todos-list > li:focus {
   background-color: var(--todos-list-focus-color);
+}
+.todos-list > li:not(:last-child) {
+  margin-bottom: var(--todos-list-item-separation);
 }

@@ -15,6 +15,7 @@ body {
   --theme-padding: 0.5vw 4vw;
   --theme-border: 1px solid black;
   --theme-border-radius: 15px;
+  --theme-list-item-separation: 0.5vw;
 }
 .light-theme .new-todo {
   --theme-padding: 3vw 4vw;
