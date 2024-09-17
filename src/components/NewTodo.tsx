@@ -4,6 +4,7 @@ import "./NewTodo.css";
 import { Todo } from "../utils/schemas";
 import ComboboxInput from "./ComboboxInput.tsx";
 import EmojiSelector from "./EmojiSelector";
+import Button from "./Button.tsx";
 
 export type NewTodoProps = {
   onNewTodo: (newTodo: Todo) => void;
@@ -42,7 +43,7 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
         onSelect={setName}
         options={{ allowCustomInput: true, allowNullish: true }}
       />
-      <button onClick={handleAddClick}>Add</button>
+      <Button onClick={handleAddClick}>children</Button>
     </div>
   );
 }
