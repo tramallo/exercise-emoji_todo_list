@@ -4,7 +4,7 @@
 }
 
 body {
-  padding: 1vw;
+  padding: 2vw;
 }
 
 .light-theme {
@@ -12,21 +12,14 @@ body {
   --theme-text-color: darkblue;
   --theme-hover-color: tomato;
   --theme-focus-color: green;
-  --theme-padding: 2vw 4vw;
-  --theme-border: 5px solid red;
+  --theme-padding: 0.5vw 4vw;
+  --theme-border: 1px solid black;
   --theme-border-radius: 15px;
-
-  --theme-container-color: blue;
-  --theme-container-border-radius: 5px;
-  --theme-container-padding: 0;
-  --theme-container-border: 3px solid pink;
 }
-
-.new-todo {
-  margin-bottom: 2vw;
+.light-theme .new-todo {
+  --theme-padding: 3vw 4vw;
 }
 
 .todos-list {
-  margin-inline: 3vw;
-  --custom-padding: 1vw 3vw;
+  margin: 3vw 4vw;
 }
