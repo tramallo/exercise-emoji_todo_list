@@ -18,6 +18,7 @@ body {
 }
 .light-theme .new-todo {
   --theme-padding: 3vw 4vw;
+  --theme-border: 2px solid black;
 }
 
 .todos-list {
