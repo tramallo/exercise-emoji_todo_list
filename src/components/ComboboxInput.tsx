@@ -132,7 +132,7 @@ export default function ComboboxInput({
         onBlur={handleInputFieldBlur}
         readOnly={!options?.allowCustomInput}
       />
-      {suggestions && (
+      {suggestions && suggestions.length != 0 && (
         <ul>
           {suggestions.map((suggestion, index) => (
             <li
