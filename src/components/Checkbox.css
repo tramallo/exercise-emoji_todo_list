@@ -1,0 +1,32 @@
+.checkbox {
+  --checkbox-color: var(--theme-color, lightgray);
+  --checkbox-text-color: var(--theme-text-color, black);
+  --checkbox-hover-color: var(--theme-hover-color, dimgray);
+  --checkbox-focus-color: var(--theme-focus-color, cyan);
+  --checkbox-active-color: var(--theme-active-color, black);
+  --checkbox-text-active-color: var(--theme-text-active-color, white);
+  --checkbox-padding: var(--theme-padding, 1vw);
+  --checkbox-border: var(--theme-border, 2px solid black);
+  --checkbox-border-radius: var(--theme-border-radius, 5px);
+
+  background-color: var(--checkbox-color);
+  color: var(--checkbox-text-color);
+  padding: var(--checkbox-padding);
+  border: var(--checkbox-border);
+  border-radius: var(--checkbox-border-radius);
+}
+.checkbox:has(input:checked) {
+  background-color: var(--checkbox-active-color);
+  color: var(--checkbox-text-active-color);
+}
+.checkbox:hover {
+  background-color: var(--checkbox-hover-color);
+}
+.checkbox:focus {
+  background-color: var(--checkbox-focus-color);
+}
+
+.checkbox > input {
+  position: absolute;
+  visibility: hidden;
+}
