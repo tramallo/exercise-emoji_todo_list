@@ -8,7 +8,7 @@ body {
 }
 
 .light-theme {
-  --theme-component-color: yellow;
+  --theme-color: yellow;
   --theme-text-color: darkblue;
   --theme-hover-color: tomato;
   --theme-focus-color: green;

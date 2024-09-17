@@ -1,11 +1,11 @@
 .emoji-selector {
-  --emoji-selector-color: var(--custom-color, var(--theme-component-color, lightgray));
-  --emoji-selector-text-color: var(--custom-text-color, var(--theme-text-color, black));
-  --emoji-selector-hover-color: var(--custom-hover-color, var(--theme-hover-color, dimgray));
-  --emoji-selector-focus-color: var(--custom-focus-color, var(--theme-focus-color, cyan));
-  --emoji-selector-padding: var(--custom-padding, var(--theme-padding, 1vw));
-  --emoji-selector-border: var(--custom-border, var(--theme-border, 2px solid black));
-  --emoji-selector-border-radius: var(--custom-border-radius, var(--theme-border-radius, 5px));
+  --emoji-selector-color: var(--theme-color, lightgray);
+  --emoji-selector-text-color: var(--theme-text-color, black);
+  --emoji-selector-hover-color: var(--theme-hover-color, dimgray);
+  --emoji-selector-focus-color: var(--theme-focus-color, cyan);
+  --emoji-selector-padding: var(--theme-padding, 1vw);
+  --emoji-selector-border: var(--theme-border, 2px solid black);
+  --emoji-selector-border-radius: var(--theme-border-radius, 5px);
 
   position: relative;
 }
