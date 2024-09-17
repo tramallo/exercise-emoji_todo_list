@@ -16,7 +16,13 @@ body {
   --theme-border: 5px solid red;
   --theme-border-radius: 15px;
 
-  --new-todo-border: none;
+  --theme-container-color: blue;
+  --theme-container-border-radius: 5px;
+  --theme-container-padding: 0;
+  --theme-container-border: 3px solid pink;
+}
+.light-theme .new-todo {
+  --theme-container-color: green;
 }
 
 .dark-theme {
