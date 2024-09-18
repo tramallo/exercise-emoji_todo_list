@@ -43,7 +43,7 @@ export default function NewTodo({ onNewTodo, options }: NewTodoProps) {
         onSelect={setName}
         options={{ allowCustomInput: true, allowNullish: true }}
       />
-      <Button onClick={handleAddClick}>children</Button>
+      <Button onClick={handleAddClick}>Add</Button>
     </div>
   );
 }
