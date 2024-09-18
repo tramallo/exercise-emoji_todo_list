@@ -5,6 +5,7 @@ import NewTodo from "./components/NewTodo";
 import TodosList from "./components/TodosList";
 import { Todo } from "./utils/schemas";
 import Checkbox from "./components/Checkbox";
+import Selector from "./components/Selector";
 
 export default function App() {
   const [currentTheme, setCurrentTheme] = useState("light-theme");
@@ -47,6 +48,8 @@ export default function App() {
         labelChecked="checked" 
         onStateChange={switchTheme} 
       />
+
+      <Selector />
     </div>
   );
 }

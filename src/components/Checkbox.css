@@ -11,6 +11,8 @@
   --checkbox-active-color: var(--theme-active-color, black);
   --checkbox-active-text-color: var(--theme-text-active-color, white);
 
+  display: inline-block;
+
   background-color: var(--checkbox-color);
   color: var(--checkbox-text-color);
   padding: var(--checkbox-padding);
