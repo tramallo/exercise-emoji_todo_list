@@ -8,13 +8,15 @@ export default function Selector() {
 
   const [ selectorPaneVisible, setSelectorPaneVisible ] = useState(false);
 
+  //update local state when checkbox changes
   const handleCheckboxStateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const checkbox = e.target as HTMLInputElement;
     setSelectorPaneVisible(checkbox.checked);
   }
 
+  //close selectorPane when it blurs
   const handleSelectorPaneBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    //let checkbox handle the state change when it is the new focused element
+    //except when checkbox is clicked, in that case let checkbox handle it
     if (e.relatedTarget == checkboxRef.current) {
       return;
     }
