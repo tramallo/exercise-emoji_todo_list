@@ -1,12 +1,9 @@
 .selector > div {
   background-color: green;
+  visibility: hidden;
 }
 .selector > div:focus {
   background-color: red;
-}
-
-.selector > div {
-  visibility: hidden;
 }
 .selector > div.visible {
   visibility: visible;
