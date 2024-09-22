@@ -54,12 +54,14 @@
 .emoji-selector > .selector-pane > .category-pane > label {
   display: block;
   text-transform: uppercase;
+  user-select: none;
 
   color: var(--emoji-selector-text-color);
 }
 
 .emoji-selector > .selector-pane > .category-pane > span {
   display: inline-block;
+  user-select: none;
   padding: .5%;
 
   color: var(--emoji-selector-text-color);
