@@ -1,3 +1,8 @@
+export type EmojiReference = {
+  category: string;
+  emojiIndex: number;
+}
+
 // Unicode code point ranges for emojis
 const emojiRangeMap = new Map([
     ['emoticons', [0x1F600, 0x1F64F]],
@@ -14,9 +19,7 @@ const emojiRangeMap = new Map([
     ['technical', [0x2300, 0x23FF]]
 ]);
 
-const emojis = new Map<string, string[]>()
-
-const getCategories = () => Array.from(emojis.keys())
+export const emojis = new Map<string, string[]>()
 
 const generateEmojis = () => {
     emojiRangeMap.forEach( (range, category) => {
@@ -33,6 +36,9 @@ const generateEmojis = () => {
         emojis.set(category, tempEmojis)
     })
 }
-generateEmojis()
+generateEmojis();
 
-export { emojis, getCategories }
+export const getEmoji = (emojiReference: EmojiReference): string | undefined => {
+  const emojiCategory = emojis.get(emojiReference.category);
+  return emojiCategory ? emojiCategory[emojiReference.emojiIndex] : undefined;
+}
