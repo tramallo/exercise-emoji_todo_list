@@ -4,12 +4,13 @@ import "./EmojiSelector.css"
 import { emojis, getEmoji, EmojiReference } from "../utils/emojis";
 
 export type EmojiSelectorProps = {
+  className?: string;
   selected: EmojiReference;
   onSelect: (selected: EmojiReference) => void;
   closeOnSelect?: boolean;
 }
 
-export default function EmojiSelector({ selected, onSelect, closeOnSelect }: EmojiSelectorProps) {
+export default function EmojiSelector({ selected, onSelect, closeOnSelect, className }: EmojiSelectorProps) {
   const checkboxLabelRef = useRef<HTMLLabelElement | null>(null);
   const selectorPaneRef = useRef<HTMLDivElement | null>(null);
   const selectedEmojiRef = useRef<HTMLSpanElement | null>(null);
@@ -63,7 +64,7 @@ export default function EmojiSelector({ selected, onSelect, closeOnSelect }: Emo
 
   //TODO: check if input can be focused by tab navigation
   return (
-    <div className="emoji-selector">
+    <div className={`emoji-selector ${className ?? ""}`}>
       <label tabIndex={0} ref={checkboxLabelRef}>
         <input 
           type="checkbox"
