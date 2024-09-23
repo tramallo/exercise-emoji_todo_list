@@ -12,6 +12,7 @@
   --checkbox-active-text-color: var(--theme-text-active-color, white);
 
   display: inline-block;
+  user-select: none;
 
   background-color: var(--checkbox-color);
   color: var(--checkbox-text-color);

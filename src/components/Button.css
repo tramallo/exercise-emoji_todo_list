@@ -9,6 +9,7 @@
 
   display: inline-block;
   box-sizing: border-box;
+  user-select: none;
 
   background-color: var(--button-color);
   color:var(--button-text-color);
