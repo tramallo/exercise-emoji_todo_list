@@ -38,7 +38,8 @@ export default function App() {
     <div className={`app ${currentTheme}`}>
       <NewTodo
         onNewTodo={addTodo}
-        options={{ defaultEmoji: "♦", nameSuggestions: usedTodoNames }}
+        defaultEmoji={{ category: "emoticons", emojiIndex: 8 }}
+        nameSuggestions={usedTodoNames}
       />
       <TodosList todos={todos} onTodoSelect={removeTodo} />
 

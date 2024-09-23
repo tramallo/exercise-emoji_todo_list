@@ -1,39 +1,39 @@
 import { useEffect, useRef, useState } from "react"
 
 import "./EmojiSelector.css"
-import { emojis } from "../utils/emojis";
+import { emojis, getEmoji, EmojiReference } from "../utils/emojis";
 
 export type EmojiSelectorProps = {
-  onSelect: (selected: string) => void;
-  defaultValue: string;
+  selected: EmojiReference;
+  onSelect: (selected: EmojiReference) => void;
+  closeOnSelect?: boolean;
 }
 
-export default function EmojiSelector({ onSelect, defaultValue }: EmojiSelectorProps) {
+export default function EmojiSelector({ selected, onSelect, closeOnSelect }: EmojiSelectorProps) {
   const checkboxLabelRef = useRef<HTMLLabelElement | null>(null);
   const selectorPaneRef = useRef<HTMLDivElement | null>(null);
-  const firstEmojiRef = useRef<HTMLSpanElement | null>(null);
+  const selectedEmojiRef = useRef<HTMLSpanElement | null>(null);
 
-  const [ selectedEmoji, setSelectedEmoji ] = useState(defaultValue);
   const [ selectorPaneVisible, setSelectorPaneVisible ] = useState(false);
+
+  const selectEmoji = (emoji: EmojiReference) => {
+    onSelect(emoji);
+
+    if(closeOnSelect) {
+      setSelectorPaneVisible(false);
+    }
+  }
 
   const handleCheckboxStateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const checkbox = e.target as HTMLInputElement;
     setSelectorPaneVisible(checkbox.checked);  
   }
 
-  const handleEmojiClick = (e: React.MouseEvent<HTMLSpanElement>) => {
-    const emojiSpan = e.target as HTMLSpanElement;
-    const emoji = emojiSpan.innerText;
-
-    setSelectedEmoji(emoji);
-    onSelect(emoji);
-  }
-
   //selectorPane closes when loses focus
   const handleEmojiBlur = (e: React.FocusEvent<HTMLSpanElement>) => {
-    const newSelectedElement = e.relatedTarget;
+    const newFocusedElement = e.relatedTarget;
 
-    if (newSelectedElement == checkboxLabelRef.current) {
+    if (newFocusedElement == checkboxLabelRef.current) {
       return;
     }
 
@@ -41,11 +41,11 @@ export default function EmojiSelector({ onSelect, defaultValue }: EmojiSelectorP
       return;
     }
 
-    if (selectorPaneRef.current.contains(newSelectedElement)) {
+    if (selectorPaneRef.current.contains(newFocusedElement)) {
       //non-emoji elements within selectorPane doesnt accept focus
-      if (newSelectedElement && newSelectedElement.tagName != "SPAN") {
-        const prevSelectedElement = e.target as HTMLElement;
-        prevSelectedElement.focus();
+      if (newFocusedElement && newFocusedElement.tagName != "SPAN") {
+        const prevFocusedElement = e.target as HTMLElement;
+        prevFocusedElement.focus();
       }
 
       return;
@@ -54,10 +54,10 @@ export default function EmojiSelector({ onSelect, defaultValue }: EmojiSelectorP
     setSelectorPaneVisible(false);
   }
 
-  //autofocus first emoji when selectorPane opens
+  //autofocus selected emoji when selectorPane opens
   useEffect(() => {
-    if (selectorPaneVisible && firstEmojiRef.current) {
-      firstEmojiRef.current.focus();
+    if (selectorPaneVisible && selectedEmojiRef.current) {
+      selectedEmojiRef.current.focus();
     }
   }, [selectorPaneVisible])
 
@@ -70,21 +70,22 @@ export default function EmojiSelector({ onSelect, defaultValue }: EmojiSelectorP
           checked={selectorPaneVisible}
           onChange={handleCheckboxStateChange} 
         />
-        {selectedEmoji}
+        {getEmoji(selected) ?? "X"}
       </label>
       <div 
         className={`selector-pane ${selectorPaneVisible ? "visible" : ""}`} 
         ref={selectorPaneRef}
       >
-        {Array.from(emojis).map( ([category, emojiList], categoryIndex) =>
+        {Array.from(emojis).map( ([category, emojiList]) =>
           <div className="category-pane" key={category} tabIndex={-1}>
             <label tabIndex={-1}>{category}</label>
             {emojiList.map( (emoji, emojiIndex) =>
               <span
+                className={ selected.category == category && selected.emojiIndex == emojiIndex ? "active" : ""}
                 tabIndex={0}
-                onClick={handleEmojiClick}
+                onClick={() => selectEmoji({ category, emojiIndex })}
                 onBlur={handleEmojiBlur}
-                ref={!categoryIndex && !emojiIndex ? firstEmojiRef : undefined}
+                ref={category == selected.category && emojiIndex == selected.emojiIndex ? selectedEmojiRef : undefined}
                 key={emojiIndex}
               >
                 {emoji}

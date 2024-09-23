@@ -5,6 +5,8 @@
   --emoji-selector-border-radius: var(--theme-border-radius, 5px);
   --emoji-selector-padding: var(--theme-padding, 1vw);
 
+  --emoji-selector-active-color: var(--theme-active-color, red);
+
   --emoji-selector-hover-color: var(--theme-hover-color, dimgray);
 
   --emoji-selector-focus-color: var(--theme-focus-color, cyan);
@@ -62,14 +64,12 @@
 .emoji-selector > .selector-pane > .category-pane > span {
   display: inline-block;
   user-select: none;
-  padding: .5%;
+  font-size: 1.5em;
 
   color: var(--emoji-selector-text-color);
   border-radius: var(--emoji-selector-border-radius);
 }
-.emoji-selector > .selector-pane > .category-pane > span:hover {
-  background-color: var(--emoji-selector-hover-color);
+.emoji-selector > .selector-pane > .category-pane > span.active {
+  background-color: var(--emoji-selector-active-color);
 }
-.emoji-selector > .selector-pane > .category-pane > span:focus {
-  background-color: var(--emoji-selector-focus-color);
-}
+
