@@ -1,136 +1,130 @@
 import "./ComboboxInput.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-/** -- ComboBox
+/** -- ComboboxInput
  * One-liner input field that reveals a list of selectable options when focused.
- * The selected option will be a parameter of the onSelect() event callback func.
+ * The selected option will be a parameter of the onSelect() event.
  *
- * @className a custom class name for this ComboBox (used to style each instance separately)
+ * @className a custom class name for this ComboBox (used to style each instance individually)
  * @suggestions the list of selectable options (avoid empty "" strings)
- * @onSelect the event callback funcion fired when a list element is selected
- * @defaultValue value set on initial draw (onSelect is called with this value on init, when provided)
+ * @value the current value to display, used to control the value from parent or as default value setter
+ * @onSelect the event callback funcion fired when a value is selected (thru list or custom input)
  * @placeholder a placeholder to display in the field
- * @options -->
- *  @allowCustomInput whether to allow the user to type a custom value
- *  @allowNullish whether to trigger the onSelect() event when user inputs an empty value
+ * @allowCustomInput whether to allow the user to type a custom value
+ * @allowNullishInput whether to trigger the onSelect() event when user inputs/selects an empty value
  *
- * NOTE: Default style is customizable by styiling the .combobox class
- * WARN: Empty option values ("") messes tab navigation as it doesnt show a component on screen,
- * but the empty component still exists and keeps tabbable.
+ * WARN: Empty suggestion values ("") messes tab navigation as it doesnt show a component on screen,
+ * but the empty component still exists and remains tabbable.
  */
 export type ComboboxInputProps = {
-  className?: string;
-  onSelect: (selectedValue: string) => void;
-  defaultValue?: string;
+  value: string;
+  onSelect: (value: string) => void;
   suggestions?: string[];
   placeholder?: string;
-  options?: {
-    allowCustomInput?: boolean;
-    allowNullish?: boolean;
-  };
+  allowCustomInput?: boolean;
+  allowNullishInput?: boolean;
+  className?: string;
 };
 
 export default function ComboboxInput({
-  className,
-  suggestions,
+  value,
   onSelect,
-  defaultValue,
+  suggestions,
   placeholder,
-  options,
+  allowCustomInput,
+  allowNullishInput,
+  className
 }: ComboboxInputProps) {
-  const [lastValidValue, setLastValidValue] = useState(defaultValue ?? "");
-  const [currentValue, setCurrentValue] = useState(defaultValue ?? "");
+  const inputFieldRef = useRef<HTMLInputElement | null>(null);
 
-  //send callback on init when defaultValue is provided
-  if (defaultValue && currentValue == defaultValue) {
-    onSelect(defaultValue);
-  }
+  const [lastValue, setLastValue] = useState(value);
 
-  //send callback when input field loses focus
-  const handleInputFieldBlur = () => {
-    //ignore nullish values when allowNullish = false
-    if (!currentValue && !options?.allowNullish) {
-      setCurrentValue(lastValidValue);
+  //send callback when input field unfocus
+  const handleInputFieldBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const inputField = e.target as HTMLInputElement;
+    const currentValue = inputField.value;
+
+    if (!currentValue && !allowNullishInput) {
+      inputField.value = lastValue;
       return;
     }
 
-    setLastValidValue(currentValue);
+    setLastValue(currentValue);
     onSelect(currentValue);
-  };
+  }
 
   //send callback when 'enter' is pressed on input field
   const handleInputFieldEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    //ignore non-enter presses
     if (e.key != "Enter") {
       return;
     }
 
-    //ignore nullish values when allowNullish = false
-    if (!currentValue && !options?.allowNullish) {
-      setCurrentValue(lastValidValue);
-      return;
-    }
-
-    //close list by releasing focus
     const inputField = e.target as HTMLInputElement;
-    inputField.blur();
+    const currentValue = inputField.value;
 
-    setLastValidValue(currentValue);
-    onSelect(currentValue);
-  };
-
-  //set current value & send callback when clicked on suggestion
-  const handleSuggestionClick = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>
-  ) => {
-    const suggestionElement = e.target as HTMLLIElement;
-    const suggestionValue = suggestionElement.innerText;
-
-    //ignore nullish values when allowNullish = false
-    if (!suggestionValue && !options?.allowNullish) {
+    if (!currentValue && !allowNullishInput) {
+      inputField.value = lastValue;
       return;
     }
 
-    //close list by releasing focus
-    suggestionElement.blur();
-
-    setLastValidValue(suggestionValue);
-    setCurrentValue(suggestionValue);
-    onSelect(suggestionValue);
+    //blur event handler sends the callback
+    inputField.blur();
   };
 
-  //set current value & send called when 'enter' is pressed on suggestion
-  const handleSuggestionEnter = (e: React.KeyboardEvent<HTMLLIElement>) => {
+  //send callback when clicked on suggestion
+  const handleSuggestionClick = (e: React.MouseEvent<HTMLLIElement>) => {
     const suggestionElement = e.target as HTMLLIElement;
     const suggestionValue = suggestionElement.innerText;
 
-    //ignore non-enter presses
+    if (!suggestionValue && !allowNullishInput) {
+      suggestionElement.blur();
+      return;
+    }
+
+    setLastValue(suggestionValue);
+    onSelect(suggestionValue);
+
+    suggestionElement.blur();
+  };
+
+  //send calback when 'enter' is pressed on suggestion
+  const handleSuggestionEnter = (e: React.KeyboardEvent<HTMLLIElement>) => {
     if (e.key != "Enter") {
       return;
     }
 
-    //ignore nullish values when allowNullish = false
-    if (!suggestionValue && !options?.allowNullish) {
+    const suggestionElement = e.target as HTMLLIElement;
+    const suggestionValue = suggestionElement.innerText;
+
+    if (!suggestionValue && !allowNullishInput) {
       return;
     }
 
-    //close list by releasing focus
-    suggestionElement.blur();
-
-    setLastValidValue(suggestionValue);
-    setCurrentValue(suggestionValue);
+    setLastValue(suggestionValue);
     onSelect(suggestionValue);
+
+    suggestionElement.blur();
   };
+
+  //set current value on-render to avoid controlled input
+  useEffect(() => {
+    const inputField = inputFieldRef.current;
+    if (!inputField) {
+      console.error("input field reference is null");
+      return;
+    }
+
+    inputField.value = value;
+  }, [value])
 
   return (
     <div className={`combobox-input ${className ?? ""}`}>
-      <input
-        placeholder={placeholder}
-        value={currentValue}
-        onChange={(e) => setCurrentValue(e.target.value)}
+      <input 
         onKeyDown={handleInputFieldEnter}
         onBlur={handleInputFieldBlur}
-        readOnly={!options?.allowCustomInput}
+        readOnly={!allowCustomInput}
+        placeholder={placeholder}
+        ref={inputFieldRef}
       />
       {suggestions && suggestions.length != 0 && (
         <ul>

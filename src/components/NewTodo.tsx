@@ -31,6 +31,7 @@ export default function NewTodo({ onNewTodo, defaultEmoji, nameSuggestions }: Ne
     };
 
     onNewTodo(newTodo);
+    setName("");
   };
 
   return (
@@ -41,9 +42,11 @@ export default function NewTodo({ onNewTodo, defaultEmoji, nameSuggestions }: Ne
         closeOnSelect={true}
       />
       <ComboboxInput
-        suggestions={nameSuggestions}
+        value={name}
         onSelect={setName}
-        options={{ allowCustomInput: true, allowNullish: true }}
+        suggestions={nameSuggestions}
+        allowCustomInput={true}
+        allowNullishInput={false}
       />
       <Button onClick={handleAddClick}>Add</Button>
     </div>

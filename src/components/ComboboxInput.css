@@ -8,9 +8,16 @@
   --combobox-input-border-radius: var(--theme-border-radius, 5px);
 
   position: relative;
+
+  border-radius: var(--combobox-input-border-radius);
 }
-.combobox-input:focus-within ul {
-    visibility: visible;
+.combobox-input:focus-within:has(ul) > input {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.combobox-input:focus-within > ul {
+  visibility: visible;
 
   border-top-width: 1px;
   border-top-style: dashed;
@@ -19,63 +26,60 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.combobox-input:has(ul):focus-within input {
-  border-bottom: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
 
-.combobox-input input {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
+.combobox-input > input {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
 
-    outline: none;
-    border-style: none;
+  outline: none;
+  border-style: none;
 
-    border-radius: var(--combobox-input-border-radius);
-    border: var(--combobox-input-border);
-    background-color: var(--combobox-input-color);
-    color: var(--combobox-input-text-color);
-    padding: var(--combobox-input-padding);
+  border: var(--combobox-input-border);
+  border-radius: var(--combobox-input-border-radius);
+  background-color: var(--combobox-input-color);
+  color: var(--combobox-input-text-color);
+  padding: var(--combobox-input-padding);
 }
 .combobox-input input:read-only {
-    cursor: pointer;
+  cursor: pointer;
 }
 .combobox-input input:hover {
-    background-color: var(--combobox-input-hover-color);
+  background-color: var(--combobox-input-hover-color);
 }
 .combobox-input input:focus {
-    background-color: var(--combobox-input-focus-color);
+  background-color: var(--combobox-input-focus-color);
 }
 
-.combobox-input ul {
-    z-index: 1;
-    position: absolute;
-    visibility: hidden;
-    list-style-type: none;
+.combobox-input > ul {
+  z-index: 1;
+  position: absolute;
 
-    margin: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-    width: 100%;
+  visibility: hidden;
+  list-style-type: none;
+
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
     
-    border: var(--combobox-input-border);
-    border-radius: var(--combobox-input-border-radius);
-    background-color: var(--combobox-input-color);
-    color: var(--combobox-input-text-color);
+  border: var(--combobox-input-border);
+  border-radius: var(--combobox-input-border-radius);
+  background-color: var(--combobox-input-color);
+  color: var(--combobox-input-text-color);
 }
-.combobox-input ul li {
-    overflow: hidden;
-    cursor: pointer;
-    outline: none;
-    white-space: pre; /* makes empty string options visible */
+.combobox-input > ul > li {
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  white-space: pre; /* makes empty string options visible */
+  user-select: none;
 
-    padding: var(--combobox-input-padding);
+  padding: var(--combobox-input-padding);
 }
-.combobox-input ul li:hover {
-    background-color: var(--combobox-input-hover-color);
+.combobox-input > ul > li:hover {
+  background-color: var(--combobox-input-hover-color);
 }
-.combobox-input ul li:focus {
-    background-color: var(--combobox-input-focus-color);
+.combobox-input > ul > li:focus {
+  background-color: var(--combobox-input-focus-color);
 }
