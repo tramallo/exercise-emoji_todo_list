@@ -1,23 +1,14 @@
 import { useState } from "react";
 
 import "./App.css";
+
 import NewTodo from "./components/NewTodo";
 import TodosList from "./components/TodosList";
 import { Todo } from "./utils/schemas";
-import Checkbox from "./components/Checkbox";
 
 export default function App() {
-  const [currentTheme, setCurrentTheme] = useState("light-theme");
   const [usedTodoNames, setUsedTodoNames] = useState<string[]>([]);
   const [todos, setTodos] = useState<Todo[]>([]);
-
-  const switchTheme = () => {
-    if (currentTheme == "light-theme") {
-      setCurrentTheme("dark-theme");
-    } else {
-      setCurrentTheme("light-theme");
-    }
-  };
 
   const addTodo = (newTodo: Todo) => {
     if (!usedTodoNames.includes(newTodo.name)) {
@@ -35,18 +26,15 @@ export default function App() {
   };
 
   return (
-    <div className={`app ${currentTheme}`}>
-      <NewTodo
-        onNewTodo={addTodo}
-        defaultEmoji={{ category: "emoticons", emojiIndex: 8 }}
-        nameSuggestions={usedTodoNames}
+    <div className={`app`}>
+      <NewTodo 
+        onNewTodo={addTodo} 
+        defaultEmoji={"😀"} 
+        nameSuggestions={usedTodoNames} 
       />
-      <TodosList todos={todos} onTodoSelect={removeTodo} />
-
-      <Checkbox 
-        label="no-checked" 
-        labelChecked="checked" 
-        onStateChange={switchTheme} 
+      <TodosList
+        todos={todos}
+        onTodoClick={removeTodo}
       />
     </div>
   );

@@ -4,29 +4,24 @@ import "./NewTodo.css";
 import { Todo } from "../utils/schemas";
 import ComboboxInput from "./ComboboxInput.tsx";
 import EmojiSelector from "./EmojiSelector";
-import Button from "./Button.tsx";
-import { EmojiReference, getEmoji } from "../utils/emojis.ts";
 
 export type NewTodoProps = {
   onNewTodo: (newTodo: Todo) => void;
-  defaultEmoji: EmojiReference;
+  defaultEmoji: string;
   nameSuggestions: string[];
 };
 
 export default function NewTodo({ onNewTodo, defaultEmoji, nameSuggestions }: NewTodoProps) {
-  const [emoji, setEmoji] = useState<EmojiReference>(defaultEmoji);
+  const [emoji, setEmoji] = useState(defaultEmoji);
   const [name, setName] = useState("");
 
   const handleAddClick = () => {
-    const emojiString = getEmoji(emoji);
-
-    //ignore when info not fullfilled
-    if (!emojiString || !name) {
+    if(!name || !emoji) {
       return;
     }
 
     const newTodo: Todo = {
-      emoji: emojiString,
+      emoji: emoji,
       name: name,
     };
 
@@ -42,13 +37,14 @@ export default function NewTodo({ onNewTodo, defaultEmoji, nameSuggestions }: Ne
         closeOnSelect={true}
       />
       <ComboboxInput
+        className="merge-inner-suggestions-border merge-input-with-suggestions"
         value={name}
         onSelect={setName}
         suggestions={nameSuggestions}
         allowCustomInput={true}
-        allowNullishInput={false}
+        allowNullishInput={true}
       />
-      <Button onClick={handleAddClick}>Add</Button>
+      <button onClick={handleAddClick} tabIndex={0}>Add</button>
     </div>
   );
 }

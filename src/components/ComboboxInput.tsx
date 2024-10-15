@@ -5,13 +5,13 @@ import { useEffect, useRef, useState } from "react";
  * One-liner input field that reveals a list of selectable options when focused.
  * The selected option will be a parameter of the onSelect() event.
  *
- * @className a custom class name for this ComboBox (used to style each instance individually)
- * @suggestions the list of selectable options (avoid empty "" strings)
- * @value the current value to display, used to control the value from parent or as default value setter
- * @onSelect the event callback funcion fired when a value is selected (thru list or custom input)
- * @placeholder a placeholder to display in the field
- * @allowCustomInput whether to allow the user to type a custom value
- * @allowNullishInput whether to trigger the onSelect() event when user inputs/selects an empty value
+ * @className A custom class name for this ComboBox (used to style each instance individually)
+ * @suggestions The list of selectable options (avoid empty "" strings)
+ * @value The current value to display, used to control the value from parent or as default value setter
+ * @onSelect The event callback funcion fired when a value is selected (thru list or custom input)
+ * @placeholder A placeholder to display in the field
+ * @allowCustomInput Whether to allow the user to type a custom value
+ * @allowNullishInput Whether to trigger the onSelect() event when user inputs/selects an empty value
  *
  * WARN: Empty suggestion values ("") messes tab navigation as it doesnt show a component on screen,
  * but the empty component still exists and remains tabbable.
@@ -46,6 +46,7 @@ export default function ComboboxInput({
 
     if (!currentValue && !allowNullishInput) {
       inputField.value = lastValue;
+      onSelect(lastValue)
       return;
     }
 
@@ -119,7 +120,7 @@ export default function ComboboxInput({
 
   return (
     <div className={`combobox-input ${className ?? ""}`}>
-      <input 
+      <input
         onKeyDown={handleInputFieldEnter}
         onBlur={handleInputFieldBlur}
         readOnly={!allowCustomInput}

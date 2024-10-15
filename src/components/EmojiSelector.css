@@ -1,27 +1,29 @@
 .emoji-selector {
-  --emoji-selector-color: var(--theme-color, lightgray);
-  --emoji-selector-text-color: var(--theme-text-color, black);
-  --emoji-selector-border: var(--theme-border, 2px solid black);
-  --emoji-selector-border-radius: var(--theme-border-radius, 5px);
-  --emoji-selector-padding: var(--theme-padding, 1vw);
-
-  --emoji-selector-active-color: var(--theme-active-color, red);
-
-  --emoji-selector-hover-color: var(--theme-hover-color, dimgray);
-
-  --emoji-selector-focus-color: var(--theme-focus-color, cyan);
-
+  display: inline-block;
   position: relative;
-  box-sizing: border-box;
-
-  background-color: var(--emoji-selector-color);
-  border: var(--emoji-selector-border);
-  border-radius: var(--emoji-selector-border-radius);
-  padding: var(--emoji-selector-padding);
 }
 
 .emoji-selector > label {
-  color: var(--emoji-selector-text-color);
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  border: var(--emoji-selector-border, 2px solid lightseagreen);
+  background-color: var(--emoji-selector-background-color, teal);
+  padding: var(--emoji-selector-padding, 1vw);
+  border-radius: var(--emoji-selector-border-radius, 5px);
+}
+.emoji-selector > label:active {
+  background-color: var(--emoji-selector-background-color_active, lightseagreen);
+}
+.emoji-selector > label:focus {
+  border: var(--emoji-selector-border_focus, 2px solid black);
+}
+.emoji-selector > label:hover {
+  border: var(--emoji-selector-border_hover, 2px solid teal);
 }
 
 .emoji-selector > label > input {
@@ -38,38 +40,54 @@
   right: 1vw;
   max-height: 50vh;
   overflow-wrap: break-word;
-  overflow-x: hidden;
+  
   overflow-y: scroll;
 
-  background-color: var(--emoji-selector-color);
-  border: var(--emoji-selector-border);
-  border-radius: var(--emoji-selector-border-radius);
+  border: var(--emoji-selector-pane-border, 2px solid lightseagreen);
+  border-radius: var(--emoji-selector-pane-border-radius, 5px);
+  background-color: var(--emoji-selector-pane-background-color, teal);
+  padding: var(--emoji-selector-pane-padding, 1vw);
 }
 .emoji-selector > .selector-pane.visible {
   visibility: visible;
 }
 
-.emoji-selector > .selector-pane > .category-pane {
-  padding: var(--emoji-selector-padding);
-}
-
-.emoji-selector > .selector-pane > .category-pane > label {
-  display: block;
+.emoji-selector > .selector-pane > label {
   text-transform: uppercase;
   user-select: none;
+  color: var(--emoji-selector-category-text-color, white);
+}
 
-  color: var(--emoji-selector-text-color);
+.emoji-selector > .selector-pane > .category-pane {
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: var(--emoji-selector-category-padding, 1vw);
+  border: var(--emoji-selector-category-border, none);
+  background-color: var(--emoji-selector-category-background-color, transparent);
+}
+.emoji-selector > .selector-pane > .category-pane:not(:last-child) {
+  margin-bottom: 2vw;
 }
 
 .emoji-selector > .selector-pane > .category-pane > span {
+  width: 1fr;
   display: inline-block;
   user-select: none;
-  font-size: 1.5em;
+  box-sizing: border-box;
 
-  color: var(--emoji-selector-text-color);
-  border-radius: var(--emoji-selector-border-radius);
+  border: var(--emoji-selector-emoji-border, 2px solid transparent);
+  background-color: var(--emoji-selector-emoji-background-color, transparent);
+  padding: var(--emoji-selector-emoji-padding, 1vw);
+  border-radius: var(--emoji-selector-emoji-border-radius, 5px);
 }
-.emoji-selector > .selector-pane > .category-pane > span.active {
-  background-color: var(--emoji-selector-active-color);
+.emoji-selector > .selector-pane > .category-pane > span.active,
+.emoji-selector > .selector-pane > .category-pane > span:active {
+  background-color: var(--emoji-selector-background-color_active, lightseagreen);
 }
-
+.emoji-selector > .selector-pane > .category-pane > span:focus {
+  border: var(--emoji-selector-border_focus, 2px solid black);
+}
+.emoji-selector > .selector-pane > .category-pane > span:hover {
+  border: var(--emoji-selector-border_hover, 2px solid lightseagreen);
+}

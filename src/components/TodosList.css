@@ -1,31 +1,45 @@
 .todos-list {
-  --todos-list-color: var(--theme-color, lightgray);
-  --todos-list-text-color: var(--theme-text-color, black);
-  --todos-list-hover-color: var(--theme-hover-color, dimgray);
-  --todos-list-focus-color: var(--theme-focus-color, cyan);
-  --todos-list-padding: var(--theme-padding, 1vw);
-  --todos-list-border: var(--theme-border, 2px solid black);
-  --todos-list-border-radius: var(--theme-border-radius, 5px);
-  --todos-list-item-separation: var(--theme-list-item-separation, 1vw);
-
   list-style-type: none;
+
+  margin: var(--todos-list-margin, 0);
+  padding: var(--todos-list-padding, 0);
 }
 
 .todos-list > li {
+  display: flex;
   outline: none;
-
-  background-color: var(--todos-list-color);
-  color: var(--todos-list-text-color);
-  padding: var(--todos-list-padding);
-  border: var(--todos-list-border);
-  border-radius: var(--todos-list-border-radius);
-}
-.todos-list > li:hover {
-  background-color: var(--todos-list-hover-color);
-}
-.todos-list > li:focus {
-  background-color: var(--todos-list-focus-color);
 }
 .todos-list > li:not(:last-child) {
-  margin-bottom: var(--todos-list-item-separation);
+  margin-bottom: var(--todos-list-separation-margin, 1vw);
+}
+
+.todos-list > li > div {
+  display: inline-block;
+  width: 90%;
+  box-sizing: border-box;
+
+  border: var(--todos-list-item-name-border, 2px solid moccasin);
+  padding: var(--todos-list-item-name-padding, 1vw);
+  background-color: var(--todos-list-item-name-background-color, burlywood);
+  border-radius: var(--todos-list-item-name-border-radius, 5px);
+}
+
+.todos-list > li > button {
+  box-sizing: border-box;
+  user-select: none;
+  width: 10%;
+
+  border: var(--todos-list-item-button-border, 2px solid lightseagreen);
+  padding: var(--todos-list-item-button-padding, 1vw);
+  background-color: var(--todos-list-item-button-background-color, teal);
+  border-radius: var(--todos-list-item-button-border-radius, 5px);
+}
+.todos-list > li > button:active {
+  background-color: var(--todos-list-item-button-background-color_active, lightseagreen);
+}
+.todos-list > li > button:focus {
+  border: var(--todos-list-item-button-border_focus, 2px solid black);
+}
+.todos-list > li > button:hover {
+  border: var(--todos-list-item-button-border_hover, 2px solid teal);
 }

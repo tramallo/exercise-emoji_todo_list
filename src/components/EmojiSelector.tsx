@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 
 import "./EmojiSelector.css"
-import { emojis, getEmoji, EmojiReference } from "../utils/emojis";
+import { emojis } from "../utils/emojis";
 
 export type EmojiSelectorProps = {
   className?: string;
-  selected: EmojiReference;
-  onSelect: (selected: EmojiReference) => void;
+  selected: string;
+  onSelect: (selected: string) => void;
   closeOnSelect?: boolean;
 }
 
@@ -17,7 +17,7 @@ export default function EmojiSelector({ selected, onSelect, closeOnSelect, class
 
   const [ selectorPaneVisible, setSelectorPaneVisible ] = useState(false);
 
-  const selectEmoji = (emoji: EmojiReference) => {
+  const selectEmoji = (emoji: string) => {
     onSelect(emoji);
 
     if(closeOnSelect) {
@@ -55,6 +55,15 @@ export default function EmojiSelector({ selected, onSelect, closeOnSelect, class
     setSelectorPaneVisible(false);
   }
 
+  
+  const handleEnter = (e) => {
+    if (e.key != "Enter") {
+      return
+    }
+
+    setSelectorPaneVisible(!selectorPaneVisible)
+  }
+
   //autofocus selected emoji when selectorPane opens
   useEffect(() => {
     if (selectorPaneVisible && selectedEmojiRef.current) {
@@ -62,37 +71,39 @@ export default function EmojiSelector({ selected, onSelect, closeOnSelect, class
     }
   }, [selectorPaneVisible])
 
-  //TODO: check if input can be focused by tab navigation
   return (
     <div className={`emoji-selector ${className ?? ""}`}>
-      <label tabIndex={0} ref={checkboxLabelRef}>
+      <label tabIndex={0} onKeyDown={(e) => handleEnter(e)} ref={checkboxLabelRef}>
         <input 
           type="checkbox"
           checked={selectorPaneVisible}
-          onChange={handleCheckboxStateChange} 
+          onChange={handleCheckboxStateChange}
+          tabIndex={-1}
         />
-        {getEmoji(selected) ?? "X"}
+        {selected ?? "😀"}
       </label>
       <div 
         className={`selector-pane ${selectorPaneVisible ? "visible" : ""}`} 
         ref={selectorPaneRef}
       >
         {Array.from(emojis).map( ([category, emojiList]) =>
-          <div className="category-pane" key={category} tabIndex={-1}>
+          <>
             <label tabIndex={-1}>{category}</label>
-            {emojiList.map( (emoji, emojiIndex) =>
-              <span
-                className={ selected.category == category && selected.emojiIndex == emojiIndex ? "active" : ""}
-                tabIndex={0}
-                onClick={() => selectEmoji({ category, emojiIndex })}
-                onBlur={handleEmojiBlur}
-                ref={category == selected.category && emojiIndex == selected.emojiIndex ? selectedEmojiRef : undefined}
-                key={emojiIndex}
-              >
-                {emoji}
-              </span>
-            )}
-          </div>
+            <div className="category-pane" key={category} tabIndex={-1}>
+              {emojiList.map( (emoji, emojiIndex) =>
+                <span
+                  key={emojiIndex}
+                  className={`${emoji == selected ? "active" : ""}`}
+                  onClick={() => selectEmoji(emoji)}
+                  onBlur={handleEmojiBlur}
+                  ref={emoji == selected ? selectedEmojiRef : undefined}
+                  tabIndex={0}
+                >
+                  {emoji}
+                </span>
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>

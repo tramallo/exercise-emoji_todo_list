@@ -4,15 +4,15 @@ import { Todo } from "../utils/schemas";
 export type TodosListProps = {
   className?: string;
   todos: Todo[];
-  onTodoSelect?: (todoIndex: number) => void
+  onTodoClick?: (todoIndex: number) => void
 };
 
-export default function TodosList({ className, todos, onTodoSelect }: TodosListProps) {
+export default function TodosList({ className, todos, onTodoClick }: TodosListProps) {
   //send callback when clicked on todo
   const handleTodoClick = (todoIndex: number) => {
 
-    if (onTodoSelect) {
-      onTodoSelect(todoIndex)
+    if (onTodoClick) {
+      onTodoClick(todoIndex)
     }
   }
 
@@ -23,21 +23,25 @@ export default function TodosList({ className, todos, onTodoSelect }: TodosListP
       return;
     }
 
-    if (onTodoSelect) {
-      onTodoSelect(todoIndex)
+    if (onTodoClick) {
+      onTodoClick(todoIndex)
     }
   }
 
   return (
     <ul className={`todos-list ${className ?? ""}`}>
       {todos.map((todo, index) => (
-        <li 
+        <li
           key={`todo-${index}`} 
-          onClick={() => handleTodoClick(index)} 
           onKeyDown={(e) => handleTodoEnter(e, index)}
-          tabIndex={0}
         >
-          {todo.emoji} {todo.name}
+          <div>{todo.name}</div>
+          <button 
+            onClick={() => handleTodoClick(index)}
+            tabIndex={0}
+          >
+            {todo.emoji}
+          </button>
         </li>
       ))}
     </ul>

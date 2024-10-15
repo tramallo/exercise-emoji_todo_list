@@ -1,27 +1,30 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 body {
-  padding: 2vw;
+  margin: 0;
 }
 
-.light-theme {
-  --theme-color: yellow;
-  --theme-text-color: darkblue;
-  --theme-hover-color: tomato;
-  --theme-focus-color: green;
-  --theme-padding: 0.5vw 4vw;
-  --theme-border: 1px solid black;
-  --theme-border-radius: 15px;
-  --theme-list-item-separation: 0.5vw;
+.app {
+  box-sizing: border-box;
+  height: 100dvh;
+  padding: 1dvh;
+
+  --emoji-selector-border-radius: 5px 0 0 5px;
+  --combobox-input-border-radius: 0;
+  --new-todo-add-button-border-radius: 0 5px 5px 0;
+
+  --todos-list-item-name-border-radius: 5px 0 0 5px;
+  --todos-list-item-button-border-radius: 0 5px 5px 0;
 }
-.light-theme .new-todo {
-  --theme-padding: 3vw 4vw;
-  --theme-border: 2px solid black;
+.app * {
+  line-height: 1em;
 }
 
-.todos-list {
-  margin: 3vw 4vw;
+.app > .new-todo {
+  --new-todo-margin: 0 0 1dvh 0;
+  height: 5%; 
+}
+.app > .todos-list {
+  height: 95%;
+  --todos-list-margin: 0 5dvw;
+
+  overflow-y: auto;
 }
