@@ -19,6 +19,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  outline: none;
 
   border: var(--new-todo-add-button-border, 2px solid lightseagreen);
   padding: var(--new-todo-add-button-padding, 1vw);
@@ -28,10 +29,8 @@
 .new-todo > button:active {
   background-color: var(--new-todo-add-button-background-color_active, lightseagreen);
 }
-.new-todo > button:focus {
-  border: var(--new-todo-add-button-border_focus, 2px solid black);
-}
+.new-todo > button:focus,
 .new-todo > button:hover {
-  color: var(--new-todo-add-button-text-color_hover, white);
+  border: var(--new-todo-add-button-border_focus, 2px solid black);
 }
 
