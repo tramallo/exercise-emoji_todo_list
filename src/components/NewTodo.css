@@ -16,6 +16,9 @@
   width: 10%;
   user-select: none;
   box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   border: var(--new-todo-add-button-border, 2px solid lightseagreen);
   padding: var(--new-todo-add-button-padding, 1vw);
