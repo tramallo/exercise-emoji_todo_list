@@ -11,12 +11,16 @@ export type NewTodoProps = {
   nameSuggestions: string[];
 };
 
-export default function NewTodo({ onNewTodo, defaultEmoji, nameSuggestions }: NewTodoProps) {
+export default function NewTodo({
+  onNewTodo,
+  defaultEmoji,
+  nameSuggestions,
+}: NewTodoProps) {
   const [emoji, setEmoji] = useState(defaultEmoji);
   const [name, setName] = useState("");
 
   const handleAddClick = () => {
-    if(!name || !emoji) {
+    if (!name || !emoji) {
       return;
     }
 
@@ -27,6 +31,15 @@ export default function NewTodo({ onNewTodo, defaultEmoji, nameSuggestions }: Ne
 
     onNewTodo(newTodo);
     setName("");
+  };
+
+  const handleAddEnter = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key != "Enter") {
+      return;
+    }
+
+    const button = e.target as HTMLButtonElement;
+    button.click();
   };
 
   return (
@@ -44,7 +57,9 @@ export default function NewTodo({ onNewTodo, defaultEmoji, nameSuggestions }: Ne
         allowCustomInput={true}
         allowNullishInput={true}
       />
-      <button onClick={handleAddClick} tabIndex={0}>Add</button>
+      <button onClick={handleAddClick} onKeyDown={handleAddEnter} tabIndex={0}>
+        Add
+      </button>
     </div>
   );
 }
