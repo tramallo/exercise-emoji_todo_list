@@ -7,13 +7,16 @@
 
 .todos-list > li {
   display: flex;
+
+  height: var(--todos-list-item-height, 5%);
 }
 .todos-list > li:not(:last-child) {
-  margin-bottom: var(--todos-list-separation-margin, 1vw);
+  margin-bottom: var(--todos-list-separation-margin, 1dvh);
 }
 
 .todos-list > li > div {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   width: 90%;
   box-sizing: border-box;
 
@@ -24,6 +27,9 @@
 }
 
 .todos-list > li > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   user-select: none;
   width: 10%;
