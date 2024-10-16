@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 
-import "./EmojiSelector.css"
+import "./EmojiSelector.css";
 import { emojis } from "../utils/emojis";
 
 export type EmojiSelectorProps = {
@@ -8,27 +8,34 @@ export type EmojiSelectorProps = {
   selected: string;
   onSelect: (selected: string) => void;
   closeOnSelect?: boolean;
-}
+};
 
-export default function EmojiSelector({ selected, onSelect, closeOnSelect, className }: EmojiSelectorProps) {
+export default function EmojiSelector({
+  selected,
+  onSelect,
+  closeOnSelect,
+  className,
+}: EmojiSelectorProps) {
   const checkboxLabelRef = useRef<HTMLLabelElement | null>(null);
   const selectorPaneRef = useRef<HTMLDivElement | null>(null);
   const selectedEmojiRef = useRef<HTMLSpanElement | null>(null);
 
-  const [ selectorPaneVisible, setSelectorPaneVisible ] = useState(false);
+  const [selectorPaneVisible, setSelectorPaneVisible] = useState(false);
 
   const selectEmoji = (emoji: string) => {
     onSelect(emoji);
 
-    if(closeOnSelect) {
+    if (closeOnSelect) {
       setSelectorPaneVisible(false);
     }
-  }
+  };
 
-  const handleCheckboxStateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxStateChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const checkbox = e.target as HTMLInputElement;
-    setSelectorPaneVisible(checkbox.checked);  
-  }
+    setSelectorPaneVisible(checkbox.checked);
+  };
 
   //selectorPane closes when loses focus
   const handleEmojiBlur = (e: React.FocusEvent<HTMLSpanElement>) => {
@@ -53,28 +60,31 @@ export default function EmojiSelector({ selected, onSelect, closeOnSelect, class
     }
 
     setSelectorPaneVisible(false);
-  }
+  };
 
-  
   const handleEnter = (e) => {
     if (e.key != "Enter") {
-      return
+      return;
     }
 
-    setSelectorPaneVisible(!selectorPaneVisible)
-  }
+    setSelectorPaneVisible(!selectorPaneVisible);
+  };
 
   //autofocus selected emoji when selectorPane opens
   useEffect(() => {
     if (selectorPaneVisible && selectedEmojiRef.current) {
       selectedEmojiRef.current.focus();
     }
-  }, [selectorPaneVisible])
+  }, [selectorPaneVisible]);
 
   return (
     <div className={`emoji-selector ${className ?? ""}`}>
-      <label tabIndex={0} onKeyDown={(e) => handleEnter(e)} ref={checkboxLabelRef}>
-        <input 
+      <label
+        tabIndex={0}
+        onKeyDown={(e) => handleEnter(e)}
+        ref={checkboxLabelRef}
+      >
+        <input
           type="checkbox"
           checked={selectorPaneVisible}
           onChange={handleCheckboxStateChange}
@@ -82,15 +92,15 @@ export default function EmojiSelector({ selected, onSelect, closeOnSelect, class
         />
         {selected ?? "😀"}
       </label>
-      <div 
-        className={`selector-pane ${selectorPaneVisible ? "visible" : ""}`} 
+      <div
+        className={`selector-pane ${selectorPaneVisible ? "visible" : ""}`}
         ref={selectorPaneRef}
       >
-        {Array.from(emojis).map( ([category, emojiList]) =>
+        {Array.from(emojis).map(([category, emojiList]) => (
           <>
             <label tabIndex={-1}>{category}</label>
             <div className="category-pane" key={category} tabIndex={-1}>
-              {emojiList.map( (emoji, emojiIndex) =>
+              {emojiList.map((emoji, emojiIndex) => (
                 <span
                   key={emojiIndex}
                   className={`${emoji == selected ? "active" : ""}`}
@@ -101,11 +111,11 @@ export default function EmojiSelector({ selected, onSelect, closeOnSelect, class
                 >
                   {emoji}
                 </span>
-              )}
+              ))}
             </div>
           </>
-        )}
+        ))}
       </div>
     </div>
-  )
+  );
 }
