@@ -29,11 +29,9 @@
 .combobox-input > input:active {
   background-color: var(--combobox-input-background-color_active, lightseagreen);
 }
-.combobox-input > input:focus {
-  border: var(--combobox-input-border_focus, 2px solid black);
-}
+.combobox-input > input:focus,
 .combobox-input > input:hover {
-  color: var(--combobox-input-text-color_hover, white);
+  border: var(--combobox-input-border_focus, 2px solid black);
 }
 
 .combobox-input > ul {
@@ -68,17 +66,15 @@
   padding: var(--combobox-input-suggestion-padding, 1vw);
   border-radius: var(--combobox-input-suggestion-border-radius, 5px);
 }
+.combobox-input > ul > li:not(:last-child) {
+  margin-bottom: var(--combobox-input-suggestion-separation, 0);
+}
 .combobox-input > ul > li:active {
   background-color: var(--combobox-input-suggestion-background-color_active, lightseagreen);
 }
-.combobox-input > ul > li:focus {
-  border: var(--combobox-input-suggestion-border_focus, 2px solid black);
-}
+.combobox-input > ul > li:focus,
 .combobox-input > ul > li:hover {
-  color: var(--combobox-input-suggestion-text-color_hover, white);
-}
-.combobox-input > ul > li:not(:last-child) {
-  margin-bottom: var(--combobox-input-suggestion-separation, 0);
+  border: var(--combobox-input-suggestion-border_focus, 2px solid black);
 }
 
 .combobox-input.merge-inner-suggestions-border > ul > li:not(:last-child) {
