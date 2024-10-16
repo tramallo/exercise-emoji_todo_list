@@ -70,6 +70,35 @@ export default function EmojiSelector({
     setSelectorPaneVisible(!selectorPaneVisible);
   };
 
+  const handleEmojiKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>) => {
+    if (e.key == "Enter") {
+      handleEmojiEnter(e);
+    }
+
+    if (e.key == "Escape") {
+      handleEmojiEscape();
+    }
+  };
+
+  const handleEmojiEnter = (e: React.KeyboardEvent<HTMLSpanElement>) => {
+    const element = e.target as HTMLSpanElement;
+    const emoji = element.innerText;
+
+    selectEmoji(emoji);
+
+    if (checkboxLabelRef.current) {
+      checkboxLabelRef.current.focus();
+    }
+  };
+
+  const handleEmojiEscape = () => {
+    setSelectorPaneVisible(false);
+
+    if (checkboxLabelRef.current) {
+      checkboxLabelRef.current.focus();
+    }
+  };
+
   //autofocus selected emoji when selectorPane opens
   useEffect(() => {
     if (selectorPaneVisible && selectedEmojiRef.current) {
@@ -105,6 +134,7 @@ export default function EmojiSelector({
                   key={emojiIndex}
                   className={`${emoji == selected ? "active" : ""}`}
                   onClick={() => selectEmoji(emoji)}
+                  onKeyDown={(e) => handleEmojiKeyDown(e)}
                   onBlur={handleEmojiBlur}
                   ref={emoji == selected ? selectedEmojiRef : undefined}
                   tabIndex={0}
