@@ -1,8 +1,9 @@
 .todos-list {
+  box-sizing: border-box;
   list-style-type: none;
 
-  margin: var(--todos-list-margin, 0);
-  padding: var(--todos-list-padding, 0);
+  margin: 0;
+  padding: 0;
 }
 
 .todos-list > li {

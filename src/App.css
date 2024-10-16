@@ -5,7 +5,7 @@ body {
 .app {
   box-sizing: border-box;
   height: 100dvh;
-  padding: 1dvh;
+  padding: 1%;
 
   --emoji-selector-border-radius: 5px 0 0 5px;
   --combobox-input-border-radius: 0;
@@ -19,12 +19,12 @@ body {
 }
 
 .app > .new-todo {
-  --new-todo-margin: 0 0 1dvh 0;
-  height: 5%; 
+  height: 7%; 
 }
+
 .app > .todos-list {
-  height: 95%;
-  --todos-list-margin: 0 5dvw;
+  height: 91%;
+  margin: 1% 5%;
 
   overflow-y: auto;
 }
