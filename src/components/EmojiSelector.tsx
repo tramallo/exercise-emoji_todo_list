@@ -62,7 +62,7 @@ export default function EmojiSelector({
     setSelectorPaneVisible(false);
   };
 
-  const handleEnter = (e) => {
+  const handleCheckboxEnter = (e: React.KeyboardEvent<HTMLLabelElement>) => {
     if (e.key != "Enter") {
       return;
     }
@@ -81,7 +81,7 @@ export default function EmojiSelector({
     <div className={`emoji-selector ${className ?? ""}`}>
       <label
         tabIndex={0}
-        onKeyDown={(e) => handleEnter(e)}
+        onKeyDown={(e) => handleCheckboxEnter(e)}
         ref={checkboxLabelRef}
       >
         <input
